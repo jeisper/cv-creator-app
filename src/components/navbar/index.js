@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Flex, Spacer } from "@chakra-ui/layout";
 import { Image, Button } from "@chakra-ui/react";
-import Search from "../search/search";
+import Search from "../search";
 import logo from "../../Assets/Images/cv.png";
 function Navbar() {
   return (
