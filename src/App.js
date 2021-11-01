@@ -6,6 +6,7 @@ import { Flex } from "@chakra-ui/react";
 import Landing from "./pages/landing";
 import Preview from "./pages/preview";
 import Profile from "./pages/profile";
+import Create from "./pages/create";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Flex>
         {/* <Navbar /> */}
         <Switch>
+          <Route path="/create/:templateID" component={Create} />
           <Route path="/templates" component={Templates} />
           <Route path="/preview" component={Preview} />
           <Route path="/profile" component={Profile} />
