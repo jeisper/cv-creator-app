@@ -13,7 +13,7 @@ import {
 function Professional() {
   const data = {};
   return (
-    <Flex flexDir="column" px="70" w="100vw">
+    <Flex flexDir="column" px="70" w="100%">
       <Flex
         flexWrap="wrap"
         flexDir="row"
