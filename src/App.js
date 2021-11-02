@@ -15,10 +15,10 @@ function App() {
         {/* <Navbar /> */}
         <Switch>
           <Route path="/create/:templateID" component={Create} />
-          <Route path="/templates" component={Templates} />
+          {/* <Route path="/templates" component={Templates} />
           <Route path="/preview" component={Preview} />
           <Route path="/profile" component={Profile} />
-          <Route path="/" component={Landing} />
+          <Route path="/" component={Landing} /> */}
         </Switch>
       </Flex>
     </Router>
