@@ -1,6 +1,5 @@
 import React from "react";
 import Templates from "./pages/templates";
-import Navbar from "./components/navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Flex } from "@chakra-ui/react";
 import Landing from "./pages/landing";
