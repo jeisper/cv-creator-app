@@ -13,7 +13,6 @@ import {
 function Professional() {
   const data = {};
   return (
-<<<<<<< HEAD
     <Flex flexDir="column" px="70" w="100vw">
       <Flex border="1px" h="100%" w="100%" flexDir="column">
         <Flex
@@ -55,32 +54,6 @@ function Professional() {
             )}
           </Text>
         </Flex>
-=======
-    <Flex flexDir="column" px="70" w="100%">
-      <Flex
-        flexWrap="wrap"
-        flexDir="row"
-        border="1px"
-        h="100vh"
-        w="100%"
-        justifyContent="space-between"
-        p="30"
-      >
-        <Image
-          borderRadius="full"
-          boxSize="200"
-          src={getValue(
-            data.image,
-            "https://miro.medium.com/max/3150/1*1a3GXrNqpIUImV_w084HfQ.jpeg"
-          )}
-        ></Image>
-        <UnorderedList>
-          <ListItem>Lorem ipsum dolor sit amet</ListItem>
-          <ListItem>Consectetur adipiscing elit</ListItem>
-          <ListItem>Integer molestie lorem at massa</ListItem>
-          <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-        </UnorderedList>
->>>>>>> 01c4deea2603bd27278ebf2221af3d64ea88a7b9
       </Flex>
     </Flex>
   );
