@@ -17,7 +17,7 @@ function Create() {
   }
 
   return (
-    <Flex flexDir="column">
+    <Flex flexDir="column" w="100%">
       <Navbar showSearch={false} />
       {currentTemplate}
     </Flex>
