@@ -1,6 +1,5 @@
 import React from "react";
 import Templates from "./pages/templates";
-import Navbar from "./components/navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Flex } from "@chakra-ui/react";
 import Landing from "./pages/landing";
@@ -15,10 +14,10 @@ function App() {
         {/* <Navbar /> */}
         <Switch>
           <Route path="/create/:templateID" component={Create} />
-          {/* <Route path="/templates" component={Templates} />
+          <Route path="/templates" component={Templates} />
           <Route path="/preview" component={Preview} />
           <Route path="/profile" component={Profile} />
-          <Route path="/" component={Landing} /> */}
+          <Route path="/" component={Landing} />
         </Switch>
       </Flex>
     </Router>
