@@ -30,30 +30,36 @@ function Professional() {
           flexDir="row"
           borderBottom="1px"
           w="100%"
+          align="center"
           justifyContent="space-between"
           p="50"
         >
-          <Flex w="20%"></Flex>
           <Image
             borderRadius="full"
-            boxSize="200"
+            boxSize="20vw"
             src={getValue(
               data.image,
               "https://miro.medium.com/max/3150/1*1a3GXrNqpIUImV_w084HfQ.jpeg"
             )}
           ></Image>
-          <UnorderedList pt="10">
-            <ListItem>
-              Name: {getValue(data.fname + " " + data.lname, "Neil Gibson")}
-            </ListItem>
-            <ListItem>
-              Email: {getValue(data.email, "1neilgibson1@gmail.com")}
-            </ListItem>
-            <ListItem>Phone: {getValue(data.phone, "0852120302")}</ListItem>
-            <ListItem>
-              LinkedIn: {getValue(data.linkedin, "neil-gibson linkedIn")}
-            </ListItem>
-          </UnorderedList>
+          <Flex h="100%" align="center">
+            <UnorderedList
+              justifyContent="center"
+              alignSelf="right"
+              fontSize="xl"
+            >
+              <ListItem>
+                Name: {getValue(data.fname + " " + data.lname, "Neil Gibson")}
+              </ListItem>
+              <ListItem>
+                Email: {getValue(data.email, "1neilgibson1@gmail.com")}
+              </ListItem>
+              <ListItem>Phone: {getValue(data.phone, "0852120302")}</ListItem>
+              <ListItem>
+                LinkedIn: {getValue(data.linkedin, "neil-gibson linkedIn")}
+              </ListItem>
+            </UnorderedList>
+          </Flex>
         </Flex>
         <Flex
           flexDir="column"
@@ -65,7 +71,7 @@ function Professional() {
           <Heading as="h2" size="2xl" color="blue.500">
             Profile
           </Heading>
-          <Text size="xxl" my="10" mx="20">
+          <Text size="xxl" my="10" mx="10">
             {getValue(
               data.summary,
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum quam at mauris laoreet, vel suscipit magna cursus. Pellentesque vel interdum urna. Nulla facilisi. Quisque scelerisque bibendum odio non ullamcorper. Maecenas ultrices justo velit, nec condimentum lorem semper non. Pellentesque id ex non sem volutpat tempus et quis ex. Proin commodo a mauris at rhoncus. Quisque rutrum feugiat lorem, ut convallis magna sollicitudin sit amet. Fusce id metus lorem. Aenean ut risus ac ligula auctor egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus enim leo, gravida eu risus id, lobortis rutrum libero. Suspendisse ut velit id justo eleifend"
@@ -150,11 +156,11 @@ function Professional() {
               </UnorderedList>
             </Flex>
           </Flex>
-          <Heading as="h2" size="2xl" color="blue.500">
-            Profile
+          <Heading as="h2" size="2xl" color="blue.500" my="5">
+            Projects
           </Heading>
           <Flex flexDir="column" w="100%" flexWrap="wrap" overflow="auto">
-            <Heading as="h2" size="md" ml="2" my="5">
+            <Heading as="h2" size="md" ml="2">
               {getValue(data.project, "project1")}
             </Heading>
             <Text mx="20">
