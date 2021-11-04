@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Navbar from "../../components/navbar";
 import ProfileData from "./ProfileData";
 import { RiArrowRightCircleLine } from "react-icons/ai";
+import Sumary from "./Sumary";
 
 function Form() {
   const [currentStep, setCurrentStep] = useState(0);
