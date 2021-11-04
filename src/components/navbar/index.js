@@ -5,8 +5,11 @@ import Search from "../search";
 import logo from "../../Assets/Images/cv.png";
 import { IoPerson } from "react-icons/io5";
 import { useHistory } from "react-router";
+import { useMediaQuery } from "@chakra-ui/media-query";
+
 function Navbar({ showSearch }) {
   const history = useHistory();
+  const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   return (
     <Flex w="100%" h="15vh" flexWrap="wrap">
       <Image
@@ -33,7 +36,12 @@ function Navbar({ showSearch }) {
           borderLeft="1px blue.500"
           borderRight="1px blue.500"
         >
-          <Heading fontFamily="Noto serif">Create your perfect CV</Heading>
+          <Heading
+            fontFamily="Noto serif"
+            fontSize={isOnmobile ? "large" : "3xl"}
+          >
+            Create the perfect CV
+          </Heading>
         </Flex>
       )}
       <Spacer />
