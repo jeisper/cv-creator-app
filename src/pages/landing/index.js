@@ -9,7 +9,7 @@ function Landing() {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const history = useHistory();
   return (
-    <Flex w="100%" flexDir="column" boxShadow="2px 2px 5px black">
+    <Flex w="100%" flexDir="column">
       <Navbar showSearch={false} />
       <Flex w="100%" h="70vh" flexWrap="wrap">
         <Flex
@@ -19,10 +19,10 @@ function Landing() {
           flexDir="column"
           flexWrap="wrap"
         >
-          <Heading fontSize="7xl" my="4" mx="15">
+          <Heading fontSize="7xl" my="4" mx="15" color="#E8A87C">
             Quick CV Creator
           </Heading>
-          <Heading fontSize="2xl" ml="5">
+          <Heading fontSize="2xl" ml="5" color="#C38D9E">
             Build the perfect CV in minutes
           </Heading>
           <Button
@@ -34,7 +34,7 @@ function Landing() {
               history.push("/templates");
             }}
           >
-            Click me bitch
+            Choose your template here
           </Button>
         </Flex>
         <Flex w="50vw" overflow="hidden">
@@ -46,8 +46,43 @@ function Landing() {
             width="10000px"
             height="50%"
           >
-            <source src="https://cdn.dribbble.com/users/1774675/screenshots/16452555/media/06eab9486f336682bfe19dc66c78e958.mp4"></source>
+            <source
+              src={
+                !isOnmobile
+                  ? "https://cdn.dribbble.com/users/1774675/screenshots/16452555/media/06eab9486f336682bfe19dc66c78e958.mp4"
+                  : null
+              }
+            ></source>
           </video>
+        </Flex>
+      </Flex>
+      <Flex w="100%" h="15vh" bg="blue.500" my="10">
+        <Flex w="50%" shadow="dark-lg" align="center" justify="center" h="100%">
+          <Heading color="white"> 1 Resumé</Heading>
+        </Flex>
+        <Flex w="50%" shadow="dark-lg" align="center" justify="center">
+          <Heading color="white">5 Minutes</Heading>
+        </Flex>
+      </Flex>
+      <Flex w="100%" mt="5" flexWrap="wrap" p="20">
+        <Flex w="50%">
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/uG2aEh5xBJE"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </Flex>
+        <Flex w="50%" alignItems="center" justify="center" flexDir="column">
+          <Heading fontSize="5xl" color="#C38D9E">
+            Get your CV tips here
+          </Heading>
+          <Heading fontSize="3xl" color="#41B3A3">
+            Get your CV tips here
+          </Heading>
         </Flex>
       </Flex>
     </Flex>
