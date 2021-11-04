@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Flex, Heading, Spacer } from "@chakra-ui/layout";
-import { Image, Button } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 import Search from "../search";
 import logo from "../../Assets/Images/cv.png";
-import { IoPerson } from "react-icons/io5";
 import { useHistory } from "react-router";
 import { useMediaQuery } from "@chakra-ui/media-query";
+import SignIn from "../Signin";
 
 function Navbar({ showSearch }) {
   const history = useHistory();
@@ -47,9 +47,7 @@ function Navbar({ showSearch }) {
       <Spacer />
 
       <Flex p="5">
-        <Button leftIcon={<IoPerson />} color="blue.500" p="5">
-          Login
-        </Button>
+        <SignIn />
       </Flex>
     </Flex>
   );

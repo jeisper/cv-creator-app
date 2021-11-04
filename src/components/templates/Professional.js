@@ -1,24 +1,9 @@
 import { Image } from "@chakra-ui/image";
-import { Flex, Heading, Spacer, Text } from "@chakra-ui/layout";
+import { Flex, Heading, Text } from "@chakra-ui/layout";
 import React from "react";
 import { getValue } from "../../Utils";
-import {
-  List,
-  ListItem,
-  ListIcon,
-  OrderedList,
-  UnorderedList,
-} from "@chakra-ui/react";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-} from "@chakra-ui/react";
+import { ListItem, UnorderedList } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from "@chakra-ui/react";
 
 function Professional() {
   const data = {};
