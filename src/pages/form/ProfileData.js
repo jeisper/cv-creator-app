@@ -1,19 +1,9 @@
-import {
-  Button,
-  Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  IconButton,
-  Input,
-  InputGroup,
-  Spacer,
-} from "@chakra-ui/react";
-import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
-import React, { useState } from "react";
+import { Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
+import { TiArrowRightOutline } from "react-icons/ti";
+import React from "react";
 import FormTextInput from "./FormTextInput";
 
-function ProfileData({ formData, updateFormData }) {
+function ProfileData({ formData, updateFormData, goBack, goNext }) {
   console.log(formData);
   return (
     <Flex
@@ -88,11 +78,14 @@ function ProfileData({ formData, updateFormData }) {
         />
       </Flex>
       <Flex justify="center">
-        <Button placeContent="left" m="2vw" fontSize="3vh" alignContent="left">
+        <Button m="2vw" fontSize="3vh" alignContent="left" onClick={goBack}>
           Cancel
         </Button>
         <Spacer />
-        <IconButton placeContent="right" m="2vw">
+        <Button m="2vw" fontSize="3vh" alignContent="left">
+          Save
+        </Button>
+        <IconButton m="2vw" onClick={goNext}>
           <TiArrowRightOutline fontSize="5vh" />
         </IconButton>
       </Flex>

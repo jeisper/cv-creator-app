@@ -1,19 +1,8 @@
-import {
-  Button,
-  Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  IconButton,
-  Input,
-  InputGroup,
-  Spacer,
-} from "@chakra-ui/react";
-import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
-import React, { useState } from "react";
+import { Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
+import { TiArrowLeftOutline } from "react-icons/ti";
+import React from "react";
 import FormTextInputNotRequired from "./FormTextInputNotRequired";
-
-function Links(formData, updateFormData) {
+function Links(formData, updateFormData, goBack) {
   return (
     <Flex
       justify="center"
@@ -94,15 +83,17 @@ function Links(formData, updateFormData) {
           updateFormData(copy);
         }}
       />
-
       <Flex justify="center">
-        <Button placeContent="left" m="2vw" fontSize="3vh" alignContent="left">
-          Cancel
-        </Button>
-        <Spacer />
-        <IconButton placeContent="right" m="2vw">
-          <TiArrowRightOutline fontSize="5vh" />
+        <IconButton placeContent="left" m="2vw" onClick={goBack}>
+          <TiArrowLeftOutline fontSize="5vh" />
         </IconButton>
+        <Spacer />
+        <Button m="2vw" fontSize="3vh" alignContent="left">
+          Save
+        </Button>
+        <Button m="2vw" fontSize="3vh" alignContent="left">
+          Submit
+        </Button>
       </Flex>
     </Flex>
   );
