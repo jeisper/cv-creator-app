@@ -2,8 +2,14 @@ import { Flex } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Navbar from "../../components/navbar";
 import ProfileData from "./ProfileData";
-import { RiArrowRightCircleLine } from "react-icons/ai";
-import Sumary from "./Sumary";
+import Summary from "./Summary";
+import { useHistory } from "react-router-dom";
+import Education from "./Education";
+import Work from "./Work";
+import Experience from "./Experience";
+import Links from "./Links";
+import Achievements from "./Achievements";
+import Skills from "./Skills";
 
 function Form() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -30,18 +36,18 @@ function Form() {
       country: "",
     },
     summary: "",
+
     education: [
       {
-        startDate: "",
-        endDate: "",
-        currentYear: "",
-        institutionName: "",
-        course: "",
-        score: "",
+        startDate: "19",
+        endDate: "23",
+        currentYear: "3",
+        institutionName: "TUD",
+        course: "CS",
+        score: "3",
         details: {
-          info: "",
-          modules: "",
-          extra: "",
+          modules: "Math",
+          extra: "No",
         },
       },
     ],
@@ -79,12 +85,113 @@ function Form() {
       },
     ],
   });
+  const history = useHistory();
+
+  let currentContent = <Flex>Loading</Flex>;
+  const goNext = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
+  const goBack = () => {
+    if (currentStep === 0) {
+      history.push("/templates");
+    }
+    setCurrentStep(currentStep - 1);
+  };
+
+  switch (currentStep) {
+    case 0:
+      currentContent = (
+        <ProfileData
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+
+    case 1:
+      currentContent = (
+        <Summary
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+
+    case 2:
+      currentContent = (
+        <Education
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 3:
+      currentContent = (
+        <Work
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 4:
+      currentContent = (
+        <Experience
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 5:
+      currentContent = (
+        <Achievements
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 6:
+      currentContent = (
+        <Skills
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 7:
+      currentContent = (
+        <Links
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+
+    default:
+      break;
+  }
 
   return (
     <Flex w="100%" flexDir="column">
       <Navbar />
       <Flex w="100%" justify="center">
-        <ProfileData formData={formData} updateFormData={setFormData} />
+        {currentContent}
       </Flex>
     </Flex>
   );

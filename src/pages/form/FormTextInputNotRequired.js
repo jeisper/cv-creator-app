@@ -3,7 +3,7 @@ import React from "react";
 
 function FormTextInputNotRequired({ label, placeholder, value, onChange }) {
   return (
-    <FormControl p="1vw" id="first-name">
+    <FormControl p="1vw">
       <FormLabel>{label}</FormLabel>
       <Input
         placeholder={placeholder}
