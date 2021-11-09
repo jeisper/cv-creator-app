@@ -7,7 +7,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import router from "./routes/templates.js";
+import templatesRouter from "./routes/templates.js";
+import userRouter from "./routes/users.js";
 
 const app = express();
 
@@ -20,7 +21,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // ROUTES
-app.use("/api/v1/templates", router);
+app.use("/api/v1/templates", templatesRouter);
+app.use("/api/v1/user", userRouter);
 
 app.get("/", (req, res) => {
   res.send({

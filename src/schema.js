@@ -36,18 +36,18 @@ const users = {
           country: "",
         },
         summary: "",
+
         education: [
           {
-            startDate: "",
-            endDate: "",
-            currentYear: "",
-            institutionName: "",
-            course: "",
-            score: "",
+            startDate: "19",
+            endDate: "23",
+            currentYear: "3",
+            institutionName: "TUD",
+            course: "CS",
+            score: "3",
             details: {
-              info: "",
-              modules: "",
-              extra: "",
+              modules: "Math",
+              extra: "No",
             },
           },
         ],

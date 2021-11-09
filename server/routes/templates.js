@@ -1,9 +1,9 @@
 import express from "express";
 import { getTemplates } from "../controllers/templatesController.js";
 
-const router = express.Router();
+const templatesRouter = express.Router();
 
 // Get all cv templates
-router.get("/", getTemplates);
+templatesRouter.get("/", getTemplates);
 
-export default router;
+export default templatesRouter;
