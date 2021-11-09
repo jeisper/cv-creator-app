@@ -2,7 +2,6 @@ import React from "react";
 import { Flex, Heading } from "@chakra-ui/layout";
 import Navbar from "../../components/navbar";
 import Card from "../../components/card";
-import templates from "../../tempData.json";
 
 function Templates() {
   return (

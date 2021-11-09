@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/image";
-import { Flex, Heading, Text } from "@chakra-ui/layout";
+import { Flex, Heading } from "@chakra-ui/layout";
 import React from "react";
 import { useHistory } from "react-router";
 import temp1 from "../../Assets/Images/temp1.png";

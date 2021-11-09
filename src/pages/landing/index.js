@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { Flex, Heading, Text } from "@chakra-ui/layout";
+import { Flex, Heading } from "@chakra-ui/layout";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import React from "react";
 import { useHistory } from "react-router";
