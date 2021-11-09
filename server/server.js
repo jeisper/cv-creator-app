@@ -1,18 +1,33 @@
-const mongoose = require("mongoose");
-const express = require("express");
-const dotenv = require("dotenv");
-dotenv.config({ path: "../.env" });
+// const mongoose = require("mongoose");
+// const express = require("express");
+// const dotenv = require("dotenv");
+// const cors = require("cors");
+// const templates = require("./routes/templates");
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import router from "./routes/templates.js";
 
 const app = express();
+
+dotenv.config({ path: "../.env" });
 const PORT = 5000;
 
-app.get("/api/templates", (req, res) => {
+// MIDDLEWARE
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+// ROUTES
+app.use("/api/v1/templates", router);
+
+app.get("/", (req, res) => {
   res.send({
     status: 200,
     data: [
       {
-        name: "pro",
-        previewImg: "",
+        msg: "hello world",
       },
     ],
   });
