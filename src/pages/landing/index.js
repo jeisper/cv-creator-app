@@ -19,7 +19,7 @@ function Landing() {
           flexDir="column"
           flexWrap="wrap"
         >
-          <Heading fontSize="7xl" my="4" mx="15" color="#E8A87C">
+          <Heading fontSize="7xl" my="4" mx="15" color="#41B3A3">
             Quick CV Creator
           </Heading>
           <Heading fontSize="2xl" ml="5" color="#C38D9E">
@@ -34,7 +34,7 @@ function Landing() {
               history.push("/templates");
             }}
           >
-            Choose your template here
+            Choose template
           </Button>
         </Flex>
         <Flex w="50vw" overflow="hidden">
