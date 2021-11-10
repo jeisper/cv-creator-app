@@ -4,6 +4,6 @@ import { getUserData, updateUserData } from "../controllers/userController.js";
 const userRouter = express.Router();
 
 // Get user's profile data
-userRouter.get("/:id/data", getUserData).post(updateUserData);
+userRouter.route("/:id/data").get(getUserData).post(updateUserData);
 
 export default userRouter;

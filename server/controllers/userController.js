@@ -53,6 +53,9 @@ export const updateUserData = async (req, res) => {
       }
     );
   } catch (err) {
-    res.json({ message: err });
+    res.status(400).json({
+      status: "request failed",
+      message: "Database error " + err,
+    });
   }
 };
