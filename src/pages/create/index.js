@@ -8,7 +8,7 @@ function Create() {
   let { templateID } = useParams(); //object destructuring
   let currentTemplate;
   switch (templateID) {
-    case "template1":
+    case "elegant":
       currentTemplate = <Professional />;
       break;
 
