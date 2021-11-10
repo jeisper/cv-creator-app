@@ -2,7 +2,7 @@ import { Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
 import { TiArrowLeftOutline } from "react-icons/ti";
 import React from "react";
 import FormTextInputNotRequired from "./FormTextInputNotRequired";
-function Links(formData, updateFormData, goBack) {
+function Links({ formData, updateFormData, goBack }) {
   return (
     <Flex
       justify="center"

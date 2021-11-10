@@ -4,6 +4,7 @@ import Navbar from "../../components/navbar";
 import Card from "../../components/card";
 
 function Templates() {
+  const axios = require("axios");
   return (
     <Flex flexDirection="column" w="100vw">
       <Navbar showSearch />
