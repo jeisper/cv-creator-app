@@ -31,27 +31,23 @@ export const updateUserData = async (req, res) => {
     const query = { googleId: req.params.id };
 
     console.log("Getting user profile data with id: ", req.params.id);
-    console.log("with profile data: ", data.profile);
+    console.log("with profile data: ", data);
 
-    User.findOneAndUpdate(
-      query,
-      data.profile,
-      { upsert: true },
-      function (err, doc) {
-        if (err) {
-          return res.status(400).json({
-            status: "unsuccessful",
-            message: err,
-          });
-        }
-        res.status(200).json({
-          status: "success",
-          data: {
-            profile: data.profile,
-          },
+    User.findOneAndUpdate(query, data, { upsert: true }, function (err, doc) {
+      if (err) {
+        return res.status(400).json({
+          status: "unsuccessful",
+          message: err,
         });
       }
-    );
+
+      res.status(200).json({
+        status: "success",
+        data: {
+          profile: data,
+        },
+      });
+    });
   } catch (err) {
     res.status(400).json({
       status: "request failed",

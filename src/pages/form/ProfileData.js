@@ -2,6 +2,7 @@ import { Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
 import { TiArrowRightOutline } from "react-icons/ti";
 import React from "react";
 import FormTextInput from "./FormTextInput";
+import axios from "axios";
 
 function ProfileData({ formData, updateFormData, goBack, goNext }) {
   console.log(formData);
@@ -82,7 +83,26 @@ function ProfileData({ formData, updateFormData, goBack, goNext }) {
           Cancel
         </Button>
         <Spacer />
-        <Button m="2vw" fontSize="3vh" alignContent="left">
+        <Button
+          m="2vw"
+          fontSize="3vh"
+          alignContent="left"
+          onClick={() => {
+            axios
+              .post("http://localhost:5000/api/v1/user/555/data", {
+                googleID: "get from firebase",
+                userData: "",
+                saved: ["template1", "template2"],
+                profileData: formData,
+              })
+              .then(function (response) {
+                console.log("got response", response);
+              })
+              .catch(function (error) {
+                console.log("got an error", error);
+              });
+          }}
+        >
           Save
         </Button>
         <IconButton m="2vw" onClick={goNext}>
