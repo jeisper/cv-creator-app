@@ -2,18 +2,19 @@ import { Image } from "@chakra-ui/image";
 import { Flex, Heading } from "@chakra-ui/layout";
 import React from "react";
 import { useHistory } from "react-router";
-import temp1 from "../../Assets/Images/temp1.png";
+import { useMediaQuery } from "@chakra-ui/media-query";
 
-function Card() {
+function Card({ template }) {
+  const isOnMobile = useMediaQuery("(max-width: 768px)");
   const history = useHistory();
   return (
     <Flex
       flexDir="column"
       h="300"
-      w="20vw"
+      w="300px"
       border="1px"
       p="4px"
-      m="10"
+      m="5"
       alignItems="center"
       borderRadius="10"
       _hover={{
@@ -21,12 +22,19 @@ function Card() {
         shadow: "2xl",
       }}
       onClick={() => {
-        history.push("/create/template1");
+        history.push("/create/" + template.templateid);
       }}
     >
-      <Image src={temp1}></Image>
-      <Heading as="h5" size="sm" mt="25px" color="navy">
-        Template 1
+      <Flex px="5">
+        <Image
+          h="250"
+          w="250"
+          objectFit="cover"
+          src={template.previewImg}
+        ></Image>
+      </Flex>
+      <Heading as="h6" size={isOnMobile ? "xs" : "sm"} mt="25px" color="navy">
+        {template.name}
       </Heading>
     </Flex>
   );
