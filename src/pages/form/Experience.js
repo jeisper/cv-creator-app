@@ -9,6 +9,7 @@ import {
 import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 import React from "react";
 import ExperienceModel from "./ExperienceModel";
+import TextDesign from "./TextDesign";
 function Experience({ formData, updateFormData, goBack, goNext }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -34,19 +35,21 @@ function Experience({ formData, updateFormData, goBack, goNext }) {
               my="2"
             >
               <Flex>
-                <Text>Title:{item.title}</Text>
+                <TextDesign text="Title: " content={item.title} />
+              </Flex>
+              <Flex>
+                <TextDesign text="Organization: " content={item.org} />
               </Flex>
               <Flex justify="center" direction="row">
-                <Text>Start Date:{item.startDate}</Text>
+                <TextDesign text="Start Date: " content={item.startDate} />
                 <Spacer />
-                <Text>End Data:{item.endDate}</Text>
+                <TextDesign text="End Date: " content={item.endDate} />
                 <Spacer />
-                <Text>Organization:{item.org}</Text>
+                <TextDesign text="Type: " content={item.type} />
               </Flex>
-              <Flex justify="center" direction="row" p="5">
-                <Text>Type: {item.type}</Text>
-                <Spacer />
-                <Text>Description: {item.description}</Text>
+
+              <Flex>
+                <TextDesign text="Description: " content={item.description} />
               </Flex>
             </Flex>
           );

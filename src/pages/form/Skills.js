@@ -9,6 +9,7 @@ import {
 import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 import React from "react";
 import SkillsModel from "./SkillsModel";
+import TextDesign from "./TextDesign";
 function Skills({ formData, updateFormData, goBack, goNext }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -34,10 +35,10 @@ function Skills({ formData, updateFormData, goBack, goNext }) {
               my="2"
             >
               <Flex>
-                <Text>Skill Title:{item.title}</Text>
+                <TextDesign text="Skill Title: " content={item.title} />
               </Flex>
               <Flex>
-                <Text>Organization:{item.list}</Text>
+                <TextDesign text="Organization: " content={item.list} />
               </Flex>
             </Flex>
           );

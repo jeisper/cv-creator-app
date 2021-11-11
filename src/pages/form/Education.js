@@ -9,6 +9,7 @@ import {
 import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 import React from "react";
 import EducationModel from "./EducationModel";
+import TextDesign from "./TextDesign";
 function Education({ formData, updateFormData, goBack, goNext }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -33,28 +34,29 @@ function Education({ formData, updateFormData, goBack, goNext }) {
               w="100%"
               my="2"
             >
-              <Flex>
-                <Text>Institute Name:{item.institutionName}</Text>
+              <Flex m="2">
+                <TextDesign
+                  text="Institute Name: "
+                  content={item.institutionName}
+                />
               </Flex>
-              <Flex justify="center" direction="row">
-                <Text>Start Date:{item.startDate}</Text>
+              <Flex justify="center" direction="row" m="2">
+                <TextDesign text="Start Date: " content={item.startDate} />
                 <Spacer />
-                <Text>End Data:{item.endDate}</Text>
+                <TextDesign text="End Date: " content={item.endDate} />
                 <Spacer />
-                <Text>Current Year:{item.currentYear}</Text>
+                <TextDesign text="Current Year: " content={item.currentYear} />
               </Flex>
-              <Flex justify="center" direction="row" p="5">
-                <Text>Course: {item.course}</Text>
+              <Flex justify="center" direction="row" p="5" m="2">
+                <TextDesign text="Course: " content={item.course} />
                 <Spacer />
-                <Text>Score: {item.score}</Text>
+                <TextDesign text="Score: " content={item.score} />
               </Flex>
-
-              <Flex>
-                <Text>Modules:{item.details.modules}</Text>
-              </Flex>
-              <Flex>
-                <Text>Extra Curricular Activities:{item.details.extra}</Text>
-              </Flex>
+              <TextDesign text="Modules: " content={item.details.modules} />
+              <TextDesign
+                text="Extra Curricular Activities: "
+                content={item.details.extra}
+              />
             </Flex>
           );
         })}

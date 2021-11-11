@@ -9,6 +9,7 @@ import {
 import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 import React from "react";
 import AchievementsModel from "./AchievementsModel";
+import TextDesign from "./TextDesign";
 function Achievements({ formData, updateFormData, goBack, goNext }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -34,16 +35,19 @@ function Achievements({ formData, updateFormData, goBack, goNext }) {
               my="2"
             >
               <Flex>
-                <Text>Achievement Title:{item.type}</Text>
+                <TextDesign text="Achievement Title: " content={item.type} />
               </Flex>
-              <Flex>
-                <Text>Organization:{item.org}</Text>
-              </Flex>
+
               <Flex justify="center" direction="row">
-                <Text>Date:{item.date}</Text>
+                <TextDesign text="Organization: " content={item.org} />
+                <Spacer />
+                <TextDesign text="Date: " content={item.date} />
               </Flex>
               <Flex>
-                <Text>Achievement Description:{item.desc}</Text>
+                <TextDesign
+                  text="Achievement Description: "
+                  content={item.desc}
+                />
               </Flex>
             </Flex>
           );

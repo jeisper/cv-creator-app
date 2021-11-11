@@ -21,7 +21,7 @@ function Summary({ formData, updateFormData, goNext, goBack }) {
       borderRadius="10px"
     >
       <FormControl p="1vw" id="first-name" isRequired>
-        <FormLabel>Summary</FormLabel>
+        <FormLabel fontWeight="bold">Summary</FormLabel>
         <Textarea
           h="62vh"
           placeholder="Summary"

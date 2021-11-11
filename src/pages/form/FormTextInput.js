@@ -4,7 +4,9 @@ import React from "react";
 function FormTextInput({ label, placeholder, value, onChange }) {
   return (
     <FormControl p="1vw" isRequired>
-      <FormLabel>{label}</FormLabel>
+      <FormLabel fontWeight="bold" fontSize="sm">
+        {label}
+      </FormLabel>
       <Input
         placeholder={placeholder}
         value={value ?? ""}

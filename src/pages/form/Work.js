@@ -9,6 +9,7 @@ import {
 import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 import React from "react";
 import WorkModel from "./WorkModel";
+import TextDesign from "./TextDesign";
 function Work({ formData, updateFormData, goBack, goNext }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -33,19 +34,19 @@ function Work({ formData, updateFormData, goBack, goNext }) {
               w="100%"
               my="2"
             >
-              <Flex>
-                <Text>Company Name:{item.company}</Text>
-              </Flex>
-              <Flex>
-                <Text>Job Title:{item.jobTitle}</Text>
-              </Flex>
+              <TextDesign text="Company Name: " content={item.company} />
+              <TextDesign text="Job Title: " content={item.jobTitle} />
               <Flex justify="center" direction="row">
-                <Text>Start Date:{item.startDate}</Text>
+                <TextDesign text="Start Date: " content={item.startDate} />
+
                 <Spacer />
-                <Text>End Data:{item.endDate}</Text>
+                <TextDesign text="End Date: " content={item.endDate} />
               </Flex>
               <Flex>
-                <Text>Job Description:{item.description}</Text>
+                <TextDesign
+                  text="Job Descrription: "
+                  content={item.description}
+                />
               </Flex>
             </Flex>
           );
