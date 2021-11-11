@@ -13,7 +13,7 @@ function Card({ template }) {
       h="300"
       w="300px"
       border="1px"
-      p="4px"
+      p="5px"
       m="5"
       alignItems="center"
       borderRadius="10"
@@ -31,9 +31,10 @@ function Card({ template }) {
           w="250"
           objectFit="cover"
           src={template.previewImg}
+          my="10px"
         ></Image>
       </Flex>
-      <Heading as="h6" size={isOnMobile ? "xs" : "sm"} mt="25px" color="navy">
+      <Heading as="h6" size={isOnMobile ? "xs" : "sm"} color="navy">
         {template.name}
       </Heading>
     </Flex>
