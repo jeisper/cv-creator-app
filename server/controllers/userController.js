@@ -28,17 +28,14 @@ export const getUserData = async (req, res) => {
 export const updateUserData = async (req, res) => {
   try {
     const data = req.body;
-    const query = { googleId: req.params.id };
+    const query = { googleID: req.params.id };
 
     console.log("Getting user profile data with id: ", req.params.id);
     console.log("with profile data: ", data);
 
-    User.save(query, data, { upsert: true }, function (err, doc) {
-      console.log("testing database");
-
+    User.findOneAndUpdate(query, data, { upsert: true }, function (err, doc) {
       if (err) {
         console.log("database err ", err);
-
         return res.status(400).json({
           status: "unsuccessful",
           message: err,
