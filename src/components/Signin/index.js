@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/layout";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -9,15 +9,40 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
+  Image,
+  PopoverTrigger,
+  Popover,
+  PopoverCloseButton,
+  PopoverContent,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { IoPerson } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 import { auth, provider } from "../../firebase";
 
 function SignIn() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user);
+        console.log(user);
+        console.log("User signed in");
+      } else {
+        console.log("User not signed in");
+      }
+    });
+  }, []);
 
   const signUserIn = () => {
     signInWithPopup(auth, provider)
@@ -27,7 +52,8 @@ function SignIn() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        alert(user.displayName);
+        setCurrentUser(user);
+
         onClose();
         // ...
       })
@@ -45,9 +71,46 @@ function SignIn() {
 
   return (
     <Flex w="100%">
-      <Button leftIcon={<IoPerson />} color="blue.500" p="5" onClick={onOpen}>
-        Sign In
-      </Button>
+      {currentUser != null ? (
+        <Popover>
+          <PopoverTrigger>
+            <Flex h="100%" justify="center" align="center">
+              <Image
+                w="50"
+                h="50"
+                borderRadius="full"
+                src={currentUser.photoURL}
+              />
+            </Flex>
+          </PopoverTrigger>
+          <PopoverContent w="100px" mr="4">
+            <PopoverCloseButton />
+            <Button
+              leftIcon={<IoPerson />}
+              color="blue.500"
+              p="1"
+              size="sm"
+              onClick={() => {
+                const auth = getAuth();
+                signOut(auth)
+                  .then(() => {
+                    setCurrentUser(null);
+                  })
+                  .catch((error) => {
+                    // An error happened.
+                  });
+              }}
+            >
+              Sign Out
+            </Button>
+          </PopoverContent>
+        </Popover>
+      ) : (
+        <Button leftIcon={<IoPerson />} color="blue.500" p="5" onClick={onOpen}>
+          Sign In
+        </Button>
+      )}
+
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
