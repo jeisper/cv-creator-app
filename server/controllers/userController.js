@@ -33,8 +33,12 @@ export const updateUserData = async (req, res) => {
     console.log("Getting user profile data with id: ", req.params.id);
     console.log("with profile data: ", data);
 
-    User.findOneAndUpdate(query, data, { upsert: true }, function (err, doc) {
+    User.save(query, data, { upsert: true }, function (err, doc) {
+      console.log("testing database");
+
       if (err) {
+        console.log("database err ", err);
+
         return res.status(400).json({
           status: "unsuccessful",
           message: err,
