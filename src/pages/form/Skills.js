@@ -52,9 +52,6 @@ function Skills({ formData, updateFormData, goBack, goNext }) {
           <TiArrowLeftOutline fontSize="5vh" />
         </IconButton>
         <Spacer />
-        <Button m="2vw" fontSize="3vh" alignContent="left">
-          Save
-        </Button>
         <IconButton placeContent="right" m="2vw" onClick={goNext}>
           <TiArrowRightOutline fontSize="35px" />
         </IconButton>

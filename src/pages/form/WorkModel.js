@@ -22,6 +22,21 @@ function WorkModel({ formData, updateFormData, isOpen, onClose }) {
     description: "",
   });
 
+  const checkValidInput = () => {
+    if (
+      currentWork.company === "" ||
+      currentWork.startDate === "" ||
+      currentWork.endDate === "" ||
+      currentWork.jobTitle === "" ||
+      currentWork.description
+    ) {
+      alert("Please Insert all Data Where Required");
+      return false;
+    }
+
+    return true;
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -92,13 +107,15 @@ function WorkModel({ formData, updateFormData, isOpen, onClose }) {
           <Spacer />
           <Button
             onClick={() => {
-              const copy = { ...formData };
-              console.log("copy", copy);
-              const arr = [...copy.work];
-              arr.push(currentWork);
-              copy.work = arr;
-              updateFormData(copy);
-              onClose();
+              if (checkValidInput()) {
+                const copy = { ...formData };
+                console.log("copy", copy);
+                const arr = [...copy.work];
+                arr.push(currentWork);
+                copy.work = arr;
+                updateFormData(copy);
+                onClose();
+              }
             }}
           >
             Add

@@ -19,6 +19,15 @@ function SkillsModel({ formData, updateFormData, isOpen, onClose }) {
     list: "",
   });
 
+  const checkValidInput = () => {
+    if (currentSkill.title === "" || currentSkill.list === "") {
+      alert("Please Insert all Data Where Required");
+      return false;
+    }
+
+    return true;
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -57,13 +66,15 @@ function SkillsModel({ formData, updateFormData, isOpen, onClose }) {
           <Spacer />
           <Button
             onClick={() => {
-              const copy = { ...formData };
-              console.log("copy", copy);
-              const arr = [...copy.skills];
-              arr.push(currentSkill);
-              copy.skills = arr;
-              updateFormData(copy);
-              onClose();
+              if (checkValidInput()) {
+                const copy = { ...formData };
+                console.log("copy", copy);
+                const arr = [...copy.skills];
+                arr.push(currentSkill);
+                copy.skills = arr;
+                updateFormData(copy);
+                onClose();
+              }
             }}
           >
             Add

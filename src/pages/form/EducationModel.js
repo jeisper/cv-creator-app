@@ -28,6 +28,20 @@ function EducationModel({ formData, updateFormData, isOpen, onClose }) {
     },
   });
 
+  const checkValidInput = () => {
+    if (
+      currentEdu.institutionName === "" ||
+      currentEdu.startDate === "" ||
+      currentEdu.endDate === "" ||
+      currentEdu.course === ""
+    ) {
+      alert("Please Insert all Data Where Required");
+      return false;
+    }
+
+    return true;
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -129,13 +143,15 @@ function EducationModel({ formData, updateFormData, isOpen, onClose }) {
           <Spacer />
           <Button
             onClick={() => {
-              const copy = { ...formData };
-              console.log("copy", copy);
-              const arr = [...copy.education];
-              arr.push(currentEdu);
-              copy.education = arr;
-              updateFormData(copy);
-              onClose();
+              if (checkValidInput()) {
+                const copy = { ...formData };
+                console.log("copy", copy);
+                const arr = [...copy.education];
+                arr.push(currentEdu);
+                copy.education = arr;
+                updateFormData(copy);
+                onClose();
+              }
             }}
           >
             Add
