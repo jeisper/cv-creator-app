@@ -6,6 +6,34 @@ import axios from "axios";
 
 function ProfileData({ formData, updateFormData, goBack, goNext }) {
   console.log(formData);
+
+  const checkValidInput = () => {
+    if (
+      formData.name.fname === "" ||
+      formData.name.lname === "" ||
+      formData.contact.phone === "" ||
+      formData.contact.email === "" ||
+      formData.location.country === "" ||
+      formData.location.city === ""
+    ) {
+      alert("Please Insert all Date Required");
+      return false;
+    }
+    if (
+      !formData.contact.email.includes(".") &&
+      !formData.contact.email.includes("@")
+    ) {
+      alert("Please Insert Valid Email");
+      return false;
+    }
+    var pattern = new RegExp(/^[0-9\b]+$/);
+    if (!pattern.test(formData.contact.phone)) {
+      alert("Please Insert Valid Phone Number ");
+      return false;
+    }
+
+    return true;
+  };
   return (
     <Flex
       justify="center"
@@ -83,29 +111,14 @@ function ProfileData({ formData, updateFormData, goBack, goNext }) {
           Cancel
         </Button>
         <Spacer />
-        <Button
+        <IconButton
           m="2vw"
-          fontSize="3vh"
-          alignContent="left"
           onClick={() => {
-            axios
-              .post("http://localhost:5000/api/v1/user/555/data", {
-                googleID: "get from firebase",
-                userData: "",
-                saved: ["template1", "template2"],
-                profileData: formData,
-              })
-              .then(function (response) {
-                console.log("got response", response);
-              })
-              .catch(function (error) {
-                console.log("got an error", error);
-              });
+            if (checkValidInput()) {
+              goNext();
+            }
           }}
         >
-          Save
-        </Button>
-        <IconButton m="2vw" onClick={goNext}>
           <TiArrowRightOutline fontSize="5vh" />
         </IconButton>
       </Flex>

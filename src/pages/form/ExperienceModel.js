@@ -23,6 +23,20 @@ function ExperienceModel({ formData, updateFormData, isOpen, onClose }) {
     type: "",
     description: "",
   });
+  const checkValidInput = () => {
+    if (
+      currentExp.title === "" ||
+      currentExp.startDate === "" ||
+      currentExp.endDate === "" ||
+      currentExp.type === "" ||
+      currentExp.org
+    ) {
+      alert("Please Insert all Data Where Required");
+      return false;
+    }
+
+    return true;
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -42,7 +56,7 @@ function ExperienceModel({ formData, updateFormData, isOpen, onClose }) {
                 setCurrentExp(copy);
               }}
             />
-            <FormTextInputNotRequired
+            <FormTextInput
               label="Organization"
               placeholder="Organization"
               value={currentExp ? currentExp.org : ""}
@@ -103,13 +117,15 @@ function ExperienceModel({ formData, updateFormData, isOpen, onClose }) {
           <Spacer />
           <Button
             onClick={() => {
-              const copy = { ...formData };
-              console.log("copy", copy);
-              const arr = [...copy.experience];
-              arr.push(currentExp);
-              copy.experience = arr;
-              updateFormData(copy);
-              onClose();
+              if (checkValidInput()) {
+                const copy = { ...formData };
+                console.log("copy", copy);
+                const arr = [...copy.experience];
+                arr.push(currentExp);
+                copy.experience = arr;
+                updateFormData(copy);
+                onClose();
+              }
             }}
           >
             Add

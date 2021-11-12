@@ -10,6 +10,14 @@ import {
 import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 
 function Summary({ formData, updateFormData, goNext, goBack }) {
+  const checkValidInput = () => {
+    if (formData.summary === "") {
+      alert("Insert Some Data to Proceed");
+      return false;
+    }
+
+    return true;
+  };
   return (
     <Flex
       justify="center"
@@ -39,10 +47,15 @@ function Summary({ formData, updateFormData, goNext, goBack }) {
           <TiArrowLeftOutline fontSize="5vh" />
         </IconButton>
         <Spacer />
-        <Button m="2vw" fontSize="3vh" alignContent="left">
-          Save
-        </Button>
-        <IconButton placeContent="right" m="2vw" onClick={goNext}>
+        <IconButton
+          placeContent="right"
+          m="2vw"
+          onClick={() => {
+            if (checkValidInput()) {
+              goNext();
+            }
+          }}
+        >
           <TiArrowRightOutline fontSize="5vh" />
         </IconButton>
       </Flex>

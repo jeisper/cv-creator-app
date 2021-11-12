@@ -21,6 +21,20 @@ function AchievementsModel({ formData, updateFormData, isOpen, onClose }) {
     desc: "",
   });
 
+  const checkValidInput = () => {
+    if (
+      currentAch.type === "" ||
+      currentAch.org === "" ||
+      currentAch.date === "" ||
+      currentAch.desc === ""
+    ) {
+      alert("Please Insert all Date Where Required");
+      return false;
+    }
+
+    return true;
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -81,13 +95,15 @@ function AchievementsModel({ formData, updateFormData, isOpen, onClose }) {
           <Spacer />
           <Button
             onClick={() => {
-              const copy = { ...formData };
-              console.log("copy", copy);
-              const arr = [...copy.achievements];
-              arr.push(currentAch);
-              copy.achievements = arr;
-              updateFormData(copy);
-              onClose();
+              if (checkValidInput()) {
+                const copy = { ...formData };
+                console.log("copy", copy);
+                const arr = [...copy.achievements];
+                arr.push(currentAch);
+                copy.achievements = arr;
+                updateFormData(copy);
+                onClose();
+              }
             }}
           >
             Add
