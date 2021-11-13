@@ -1,9 +1,8 @@
-import { Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
-import { TiArrowLeftOutline } from "react-icons/ti";
+import { Flex, IconButton, Spacer } from "@chakra-ui/react";
+import { TiArrowLeftOutline, TiArrowRightOutline } from "react-icons/ti";
 import React from "react";
 import FormTextInputNotRequired from "./FormTextInputNotRequired";
-import axios from "axios";
-function Links({ formData, updateFormData, goBack }) {
+function Links({ formData, updateFormData, goBack, goNext }) {
   return (
     <Flex
       justify="center"
@@ -89,28 +88,9 @@ function Links({ formData, updateFormData, goBack }) {
           <TiArrowLeftOutline fontSize="5vh" />
         </IconButton>
         <Spacer />
-        <Button
-          m="2vw"
-          fontSize="3vh"
-          alignContent="left"
-          onClick={() => {
-            axios
-              .post("http://localhost:5000/api/v1/user/555/data", {
-                googleID: "get from firebase",
-                userData: "",
-                saved: ["template1", "template2"],
-                profileData: formData,
-              })
-              .then(function (response) {
-                console.log("got response", response);
-              })
-              .catch(function (error) {
-                console.log("got an error", error);
-              });
-          }}
-        >
-          Submit
-        </Button>
+        <IconButton placeContent="right" m="2vw" onClick={goNext}>
+          <TiArrowRightOutline fontSize="5vh" />
+        </IconButton>
       </Flex>
     </Flex>
   );

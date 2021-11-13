@@ -3,6 +3,7 @@ import { TiArrowRightOutline } from "react-icons/ti";
 import React from "react";
 import FormTextInput from "./FormTextInput";
 import axios from "axios";
+import ImageUpload from "./ImageUpload";
 
 function ProfileData({ formData, updateFormData, goBack, goNext }) {
   console.log(formData);

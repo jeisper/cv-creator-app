@@ -10,6 +10,8 @@ import Experience from "./Experience";
 import Links from "./Links";
 import Achievements from "./Achievements";
 import Skills from "./Skills";
+import ProfilePicture from "./ProfilePicture";
+import Preview from "./Preview";
 
 function Form() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -110,10 +112,9 @@ function Form() {
         />
       );
       break;
-
     case 1:
       currentContent = (
-        <Summary
+        <ProfilePicture
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
@@ -124,7 +125,7 @@ function Form() {
 
     case 2:
       currentContent = (
-        <Education
+        <Summary
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
@@ -132,9 +133,10 @@ function Form() {
         />
       );
       break;
+
     case 3:
       currentContent = (
-        <Work
+        <Education
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
@@ -144,7 +146,7 @@ function Form() {
       break;
     case 4:
       currentContent = (
-        <Experience
+        <Work
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
@@ -154,7 +156,7 @@ function Form() {
       break;
     case 5:
       currentContent = (
-        <Achievements
+        <Experience
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
@@ -164,7 +166,7 @@ function Form() {
       break;
     case 6:
       currentContent = (
-        <Skills
+        <Achievements
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
@@ -174,7 +176,27 @@ function Form() {
       break;
     case 7:
       currentContent = (
+        <Skills
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 8:
+      currentContent = (
         <Links
+          formData={formData}
+          updateFormData={setFormData}
+          goNext={goNext}
+          goBack={goBack}
+        />
+      );
+      break;
+    case 9:
+      currentContent = (
+        <Preview
           formData={formData}
           updateFormData={setFormData}
           goNext={goNext}
