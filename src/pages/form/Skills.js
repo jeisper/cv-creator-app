@@ -2,7 +2,6 @@ import {
   Button,
   Flex,
   IconButton,
-  Text,
   Spacer,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -10,7 +9,13 @@ import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 import React from "react";
 import SkillsModel from "./SkillsModel";
 import TextDesign from "./TextDesign";
-function Skills({ formData, updateFormData, goBack, goNext }) {
+function Skills({
+  formData,
+  updateFormData,
+  goBack,
+  goNext,
+  uploadDataToDatabase,
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex
@@ -23,7 +28,7 @@ function Skills({ formData, updateFormData, goBack, goNext }) {
       borderRadius="10px"
     >
       <Flex flexDir="column">
-        {formData.skills.map((item, index) => {
+        {formData.skills.map((item) => {
           return (
             <Flex
               justify="center"
@@ -38,7 +43,7 @@ function Skills({ formData, updateFormData, goBack, goNext }) {
                 <TextDesign text="Skill Title: " content={item.title} />
               </Flex>
               <Flex>
-                <TextDesign text="Organization: " content={item.list} />
+                <TextDesign text="Description: " content={item.list} />
               </Flex>
             </Flex>
           );
@@ -52,6 +57,16 @@ function Skills({ formData, updateFormData, goBack, goNext }) {
           <TiArrowLeftOutline fontSize="5vh" />
         </IconButton>
         <Spacer />
+        <Button
+          m="2vw"
+          fontSize="3vh"
+          alignContent="left"
+          onClick={() => {
+            uploadDataToDatabase();
+          }}
+        >
+          Save
+        </Button>
         <IconButton placeContent="right" m="2vw" onClick={goNext}>
           <TiArrowRightOutline fontSize="35px" />
         </IconButton>

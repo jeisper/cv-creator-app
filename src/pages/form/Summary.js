@@ -9,7 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 
-function Summary({ formData, updateFormData, goNext, goBack }) {
+function Summary({
+  formData,
+  updateFormData,
+  uploadDataToDatabase,
+  goNext,
+  goBack,
+}) {
   const checkValidInput = () => {
     if (formData.summary === "") {
       alert("Insert Some Data to Proceed");
@@ -47,6 +53,16 @@ function Summary({ formData, updateFormData, goNext, goBack }) {
           <TiArrowLeftOutline fontSize="5vh" />
         </IconButton>
         <Spacer />
+        <Button
+          m="2vw"
+          fontSize="3vh"
+          alignContent="left"
+          onClick={() => {
+            uploadDataToDatabase();
+          }}
+        >
+          Save
+        </Button>
         <IconButton
           placeContent="right"
           m="2vw"

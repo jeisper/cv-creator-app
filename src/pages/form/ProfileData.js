@@ -2,9 +2,14 @@ import { Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
 import { TiArrowRightOutline } from "react-icons/ti";
 import React from "react";
 import FormTextInput from "./FormTextInput";
-import axios from "axios";
 
-function ProfileData({ formData, updateFormData, goBack, goNext }) {
+function ProfileData({
+  formData,
+  updateFormData,
+  uploadDataToDatabase,
+  goBack,
+  goNext,
+}) {
   console.log(formData);
 
   const checkValidInput = () => {
@@ -111,6 +116,16 @@ function ProfileData({ formData, updateFormData, goBack, goNext }) {
           Cancel
         </Button>
         <Spacer />
+        <Button
+          m="2vw"
+          fontSize="3vh"
+          alignContent="left"
+          onClick={() => {
+            uploadDataToDatabase();
+          }}
+        >
+          Save
+        </Button>
         <IconButton
           m="2vw"
           onClick={() => {

@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar";
 import ProfileData from "./ProfileData";
@@ -27,15 +27,12 @@ function Form() {
       phone: "",
       email: "",
     },
-    links: {
-      linkedin: "",
-      instagram: "",
-      twitter: "",
-      facebook: "",
-      github: "",
-      website: "",
-      youtube: "",
-    },
+    links: [
+      {
+        name: "",
+        link: "",
+      },
+    ],
     location: {
       city: "",
       country: "",
@@ -90,7 +87,41 @@ function Form() {
     ],
   });
 
+  const toast = useToast();
   const history = useHistory();
+  const uploadDataToDatabase = () => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in,
+        const uid = user.uid;
+        axios
+          .post(`http://localhost:5000/api/v1/user/${uid}/data`, {
+            googleID: uid + "",
+            userData: user,
+            saved: ["template1", "template2"],
+            profileData: formData,
+          })
+          .then(function (response) {
+            console.log("got response", response);
+            toast({
+              title: "Submitted!",
+              description: "Your profile has been updated",
+              status: "success",
+              duration: 2000,
+              isClosable: true,
+            });
+            history.push("/templates");
+          })
+          .catch(function (error) {
+            console.log("got an error", error);
+            alert("Server Error");
+          });
+      } else {
+        alert("Please Sign in to submit");
+      }
+    });
+  };
 
   const [currentUser, setCurrentUser] = useState(null);
 

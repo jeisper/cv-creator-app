@@ -1,9 +1,23 @@
-import { Flex, IconButton, Spacer, Button, useToast } from "@chakra-ui/react";
+import {
+  Flex,
+  IconButton,
+  Spacer,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { TiArrowLeftOutline, TiArrowRightOutline } from "react-icons/ti";
 import React from "react";
-import FormTextInputNotRequired from "./FormTextInputNotRequired";
+import LinksText from "./LinksText";
+import LinksModel from "./LinksModel";
 
-function Links({ formData, updateFormData, goBack, goNext }) {
+function Links({
+  formData,
+  updateFormData,
+  goBack,
+  goNext,
+  uploadDataToDatabase,
+}) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex
       justify="center"
@@ -14,85 +28,57 @@ function Links({ formData, updateFormData, goBack, goNext }) {
       boxShadow="dark-lg"
       borderRadius="10px"
     >
-      <FormTextInputNotRequired
-        label="LinkedIn"
-        placeholder="LinkedIn"
-        value={formData && formData.links ? formData.links.linkedin : ""}
-        onChange={(text) => {
-          const copy = { ...formData };
-          copy.links.linkedin = text;
-          updateFormData(copy);
-        }}
-      />
-      <FormTextInputNotRequired
-        label="GitHub"
-        placeholder="GitHub"
-        value={formData && formData.links ? formData.links.github : ""}
-        onChange={(text) => {
-          const copy = { ...formData };
-          copy.links.github = text;
-          updateFormData(copy);
-        }}
-      />
-      <FormTextInputNotRequired
-        label="WebSite"
-        placeholder="WebSite"
-        value={formData && formData.links ? formData.links.website : ""}
-        onChange={(text) => {
-          const copy = { ...formData };
-          copy.links.website = text;
-          updateFormData(copy);
-        }}
-      />
-      <FormTextInputNotRequired
-        label="Facebook"
-        placeholder="Facebook"
-        value={formData && formData.links ? formData.links.facebook : ""}
-        onChange={(text) => {
-          const copy = { ...formData };
-          copy.links.facebook = text;
-          updateFormData(copy);
-        }}
-      />
-      <FormTextInputNotRequired
-        label="Instragram"
-        placeholder="Instragram"
-        value={formData && formData.links ? formData.links.instagram : ""}
-        onChange={(text) => {
-          const copy = { ...formData };
-          copy.links.instagram = text;
-          updateFormData(copy);
-        }}
-      />
-      <FormTextInputNotRequired
-        label="Twitter"
-        placeholder="Twitter"
-        value={formData && formData.links ? formData.links.twitter : ""}
-        onChange={(text) => {
-          const copy = { ...formData };
-          copy.links.twitter = text;
-          updateFormData(copy);
-        }}
-      />
-      <FormTextInputNotRequired
-        label="Youtube"
-        placeholder="Youtube"
-        value={formData && formData.links ? formData.links.youtube : ""}
-        onChange={(text) => {
-          const copy = { ...formData };
-          copy.links.youtube = text;
-          updateFormData(copy);
-        }}
-      />
+      <Flex flexDir="column">
+        {formData.links.map((item) => {
+          return (
+            <Flex
+              justify="center"
+              direction="column"
+              p="5"
+              boxShadow="dark-lg"
+              borderRadius="10"
+              w="100%"
+              my="2"
+            >
+              <Flex>
+                <LinksText text="Name: " content={item.name} />
+              </Flex>
+              <Flex>
+                <LinksText text="Link: " content={item.link} />
+              </Flex>
+            </Flex>
+          );
+        })}
+      </Flex>
+      <Button justify="center" w="90%" m="2vw" fontSize="lg" onClick={onOpen}>
+        Add Link
+      </Button>
       <Flex justify="center">
         <IconButton placeContent="left" m="2vw" onClick={goBack}>
           <TiArrowLeftOutline fontSize="5vh" />
         </IconButton>
         <Spacer />
+        <Button
+          m="2vw"
+          fontSize="3vh"
+          alignContent="left"
+          onClick={() => {
+            uploadDataToDatabase();
+          }}
+        >
+          Save
+        </Button>
         <IconButton placeContent="right" m="2vw" onClick={goNext}>
           <TiArrowRightOutline fontSize="5vh" />
         </IconButton>
       </Flex>
+      <LinksModel
+        formData={formData}
+        updateFormData={updateFormData}
+        onClose={onClose}
+        onOpen={onOpen}
+        isOpen={isOpen}
+      />
     </Flex>
   );
 }

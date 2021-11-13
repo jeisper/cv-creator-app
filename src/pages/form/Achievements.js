@@ -2,7 +2,6 @@ import {
   Button,
   Flex,
   IconButton,
-  Text,
   Spacer,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -10,7 +9,13 @@ import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 import React from "react";
 import AchievementsModel from "./AchievementsModel";
 import TextDesign from "./TextDesign";
-function Achievements({ formData, updateFormData, goBack, goNext }) {
+function Achievements({
+  formData,
+  updateFormData,
+  uploadDataToDatabase,
+  goBack,
+  goNext,
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex
@@ -23,7 +28,7 @@ function Achievements({ formData, updateFormData, goBack, goNext }) {
       borderRadius="10px"
     >
       <Flex flexDir="column">
-        {formData.achievements.map((item, index) => {
+        {formData.achievements.map((item) => {
           return (
             <Flex
               justify="center"
@@ -61,6 +66,16 @@ function Achievements({ formData, updateFormData, goBack, goNext }) {
           <TiArrowLeftOutline fontSize="5vh" />
         </IconButton>
         <Spacer />
+        <Button
+          m="2vw"
+          fontSize="3vh"
+          alignContent="left"
+          onClick={() => {
+            uploadDataToDatabase();
+          }}
+        >
+          Save
+        </Button>
         <IconButton placeContent="right" m="2vw" onClick={goNext}>
           <TiArrowRightOutline fontSize="35px" />
         </IconButton>

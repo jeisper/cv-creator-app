@@ -9,7 +9,13 @@ import {
 import { useEffect, useRef } from "react";
 import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
 
-function ProfilePicture({ formData, updateFormData, goNext, goBack }) {
+function ProfilePicture({
+  formData,
+  updateFormData,
+  uploadDataToDatabase,
+  goNext,
+  goBack,
+}) {
   let myWidget = useRef(null);
 
   useEffect(() => {
@@ -64,6 +70,7 @@ function ProfilePicture({ formData, updateFormData, goNext, goBack }) {
             h="200px"
             objectFit="cover"
             border="1px"
+            borderRadius="100"
           />
         ) : null}
       </Flex>
@@ -73,6 +80,16 @@ function ProfilePicture({ formData, updateFormData, goNext, goBack }) {
           <TiArrowLeftOutline fontSize="5vh" />
         </IconButton>
         <Spacer />
+        <Button
+          m="2vw"
+          fontSize="3vh"
+          alignContent="left"
+          onClick={() => {
+            uploadDataToDatabase();
+          }}
+        >
+          Save
+        </Button>
         <IconButton placeContent="right" m="2vw" onClick={goNext}>
           <TiArrowRightOutline fontSize="5vh" />
         </IconButton>

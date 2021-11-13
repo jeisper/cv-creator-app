@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
 
-function TextDesign({ text, content }) {
+function LinksText({ text, content }) {
   return (
     <Flex direction="row" m="2">
       <Text fontWeight="bold" mr="2" fontSize="sm">
@@ -14,4 +14,4 @@ function TextDesign({ text, content }) {
   );
 }
 
-export default TextDesign;
+export default LinksText;

@@ -41,6 +41,10 @@ const achievementsSchema = mongoose.Schema({
   date: String,
   desc: String,
 });
+const linksSchema = mongoose.Schema({
+  name: String,
+  link: String,
+});
 
 const userSchema = mongoose.Schema({
   googleID: String,
@@ -55,15 +59,7 @@ const userSchema = mongoose.Schema({
       phone: String,
       email: String,
     },
-    links: {
-      linkedin: String,
-      instagram: String,
-      twitter: String,
-      facebook: String,
-      github: String,
-      website: String,
-      youtube: String,
-    },
+    links: [linksSchema],
     location: {
       city: String,
       country: String,
