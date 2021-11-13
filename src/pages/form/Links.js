@@ -3,7 +3,35 @@ import { TiArrowLeftOutline } from "react-icons/ti";
 import React from "react";
 import FormTextInputNotRequired from "./FormTextInputNotRequired";
 import axios from "axios";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 function Links({ formData, updateFormData, goBack }) {
+  const uploadDataToDatabase = () => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in,
+        const uid = user.uid;
+        axios
+          .post("http://localhost:5000/api/v1/user/555/data", {
+            googleID: uid + "",
+            userData: user,
+            saved: ["template1", "template2"],
+            profileData: formData,
+          })
+          .then(function (response) {
+            console.log("got response", response);
+          })
+          .catch(function (error) {
+            console.log("got an error", error);
+            alert("Server Error");
+          });
+      } else {
+        alert("Please Sign in to submit");
+      }
+    });
+  };
+
   return (
     <Flex
       justify="center"
@@ -94,19 +122,7 @@ function Links({ formData, updateFormData, goBack }) {
           fontSize="3vh"
           alignContent="left"
           onClick={() => {
-            axios
-              .post("http://localhost:5000/api/v1/user/555/data", {
-                googleID: "get from firebase",
-                userData: "",
-                saved: ["template1", "template2"],
-                profileData: formData,
-              })
-              .then(function (response) {
-                console.log("got response", response);
-              })
-              .catch(function (error) {
-                console.log("got an error", error);
-              });
+            uploadDataToDatabase();
           }}
         >
           Submit
