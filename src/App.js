@@ -6,8 +6,11 @@ import Landing from "./pages/landing";
 import Profile from "./pages/profile";
 import Create from "./pages/create";
 import Form from "./pages/form";
+import useScript from "./hooks/useScript";
 
 function App() {
+  useScript("https://upload-widget.cloudinary.com/global/all.js");
+
   return (
     <Router>
       <Flex>

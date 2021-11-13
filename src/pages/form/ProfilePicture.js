@@ -1,8 +1,36 @@
-import { Flex, IconButton, Spacer } from "@chakra-ui/react";
+import {
+  Flex,
+  IconButton,
+  Spacer,
+  Button,
+  Heading,
+  Image,
+} from "@chakra-ui/react";
+import { useEffect, useRef } from "react";
 import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
-import ImageUpload from "./ImageUpload";
 
-function ProfilePicture({ formData, updateFormDate, goNext, goBack }) {
+function ProfilePicture({ formData, updateFormData, goNext, goBack }) {
+  let myWidget = useRef(null);
+
+  useEffect(() => {
+    myWidget.current = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "cv-builder",
+        uploadPreset: "profile",
+        sources: ["local"],
+        maxFiles: 1,
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log("Done! Here is the image info: ", result.info.url);
+          const copy = { ...formData };
+          copy.profileImg = result.info.url;
+          updateFormData(copy);
+        }
+      }
+    );
+  }, []);
+
   return (
     <Flex
       justify="center"
@@ -13,7 +41,32 @@ function ProfilePicture({ formData, updateFormDate, goNext, goBack }) {
       boxShadow="dark-lg"
       borderRadius="10px"
     >
-      <ImageUpload />
+      <Flex
+        w="100%"
+        minH="50vh"
+        flexDir="column"
+        justify="space-evenly"
+        align="center"
+      >
+        <Heading>Upload Profile Picture</Heading>
+        <Button
+          my="2"
+          onClick={() => {
+            myWidget.current.open();
+          }}
+        >
+          {formData.profileImg !== "" ? "Update Image" : "Choose image"}
+        </Button>
+        {formData.profileImg !== "" ? (
+          <Image
+            src={formData.profileImg}
+            w="200px"
+            h="200px"
+            objectFit="cover"
+            border="1px"
+          />
+        ) : null}
+      </Flex>
 
       <Flex justify="center">
         <IconButton placeContent="left" m="2vw" onClick={goBack}>

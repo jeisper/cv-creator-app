@@ -16,6 +16,7 @@ import Preview from "./Preview";
 function Form() {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
+    profileImg: "",
     name: {
       fname: "",
       lname: "",
@@ -38,7 +39,6 @@ function Form() {
       country: "",
     },
     summary: "",
-
     education: [
       {
         startDate: "19",

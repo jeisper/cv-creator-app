@@ -1,11 +1,15 @@
-import { Flex, IconButton, Spacer } from "@chakra-ui/react";
+import { Flex, IconButton, Spacer, Button, useToast } from "@chakra-ui/react";
 import { TiArrowLeftOutline, TiArrowRightOutline } from "react-icons/ti";
 import React from "react";
 import FormTextInputNotRequired from "./FormTextInputNotRequired";
 import axios from "axios";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useHistory } from "react-router";
 
 function Links({ formData, updateFormData, goBack }) {
+  const toast = useToast();
+  const history = useHistory();
+
   const uploadDataToDatabase = () => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -13,7 +17,7 @@ function Links({ formData, updateFormData, goBack }) {
         // User is signed in,
         const uid = user.uid;
         axios
-          .post("http://localhost:5000/api/v1/user/555/data", {
+          .post(`http://localhost:5000/api/v1/user/${uid}/data`, {
             googleID: uid + "",
             userData: user,
             saved: ["template1", "template2"],
@@ -21,6 +25,14 @@ function Links({ formData, updateFormData, goBack }) {
           })
           .then(function (response) {
             console.log("got response", response);
+            toast({
+              title: "Submitted!",
+              description: "Your profile has been updated",
+              status: "success",
+              duration: 2000,
+              isClosable: true,
+            });
+            history.push("/templates");
           })
           .catch(function (error) {
             console.log("got an error", error);

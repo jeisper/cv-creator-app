@@ -46,6 +46,7 @@ const userSchema = mongoose.Schema({
   googleID: String,
   saved: [String],
   profileData: {
+    profileImg: String,
     name: {
       fname: String,
       lname: String,
