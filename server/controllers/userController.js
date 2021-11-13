@@ -14,6 +14,13 @@ export const getUserData = async (req, res) => {
       });
     }
 
+    if (userData.googleID !== req.params.id) {
+      return res.status(400).json({
+        status: "failed",
+        msg: "User not found",
+      });
+    }
+
     res.status(200).json({
       status: "success",
       data: {
