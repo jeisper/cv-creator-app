@@ -1,15 +1,36 @@
 import { Flex } from "@chakra-ui/layout";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Navbar from "../../components/navbar";
 import Professional from "../../components/templates/Professional";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 
 function Create() {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user);
+        console.log("User signed in");
+      } else {
+        console.log("User not signed in");
+      }
+    });
+  }, []);
+
   let { templateID } = useParams(); //object destructuring
   let currentTemplate;
   switch (templateID) {
     case "elegant":
-      currentTemplate = <Professional />;
+      currentTemplate = <Professional currentUser={currentUser} />;
       break;
 
     default:

@@ -71,9 +71,9 @@ function Landing() {
             height="315"
             src="https://www.youtube.com/embed/uG2aEh5xBJE"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </Flex>
         <Flex w="50%" alignItems="center" justify="center" flexDir="column">

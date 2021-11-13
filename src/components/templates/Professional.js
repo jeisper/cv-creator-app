@@ -1,12 +1,34 @@
 import { Image } from "@chakra-ui/image";
 import { Flex, Heading, Text } from "@chakra-ui/layout";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getValue } from "../../Utils";
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from "@chakra-ui/react";
+import axios from "axios";
 
-function Professional() {
-  const data = {};
+function Professional({ currentUser }) {
+  const [profileData, setProfileData] = useState({});
+  const uid = currentUser ? currentUser.uid : null;
+
+  useEffect(() => {
+    if (uid) {
+      axios
+        .get("http://localhost:5000/api/v1/user/" + { uid } + "/data")
+        .then(function (response) {
+          console.log("throw");
+          setProfileData(response);
+          console.log(response);
+          console.log(profileData);
+
+          // handle success
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+  }, [currentUser]);
+
   return (
     <Flex flexDir="column" px="70" w="100vw" mt="10">
       <Flex border="1px" h="100%" w="100%" flexDir="column">
@@ -23,7 +45,7 @@ function Professional() {
             borderRadius="full"
             boxSize="20vw"
             src={getValue(
-              data.image,
+              profileData.image,
               "https://miro.medium.com/max/3150/1*1a3GXrNqpIUImV_w084HfQ.jpeg"
             )}
           ></Image>
@@ -34,14 +56,18 @@ function Professional() {
               fontSize="xl"
             >
               <ListItem>
-                Name: {getValue(data.fname + " " + data.lname, "Neil Gibson")}
+                Name:{" "}
+                {getValue(profileData.fname + profileData.lname, "Neil Gibson")}
               </ListItem>
               <ListItem>
-                Email: {getValue(data.email, "1neilgibson1@gmail.com")}
+                Email: {getValue(profileData.email, "1neilgibson1@gmail.com")}
               </ListItem>
-              <ListItem>Phone: {getValue(data.phone, "0852120302")}</ListItem>
               <ListItem>
-                LinkedIn: {getValue(data.linkedin, "neil-gibson linkedIn")}
+                Phone: {getValue(profileData.phone, "0852120302")}
+              </ListItem>
+              <ListItem>
+                LinkedIn:{" "}
+                {getValue(profileData.linkedin, "neil-gibson linkedIn")}
               </ListItem>
             </UnorderedList>
           </Flex>
@@ -58,7 +84,7 @@ function Professional() {
           </Heading>
           <Text size="xxl" my="10" mx="10">
             {getValue(
-              data.summary,
+              profileData.summary,
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum quam at mauris laoreet, vel suscipit magna cursus. Pellentesque vel interdum urna. Nulla facilisi. Quisque scelerisque bibendum odio non ullamcorper. Maecenas ultrices justo velit, nec condimentum lorem semper non. Pellentesque id ex non sem volutpat tempus et quis ex. Proin commodo a mauris at rhoncus. Quisque rutrum feugiat lorem, ut convallis magna sollicitudin sit amet. Fusce id metus lorem. Aenean ut risus ac ligula auctor egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus enim leo, gravida eu risus id, lobortis rutrum libero. Suspendisse ut velit id justo eleifend"
             )}
           </Text>
@@ -68,10 +94,13 @@ function Professional() {
 
           <Flex w="100%" justifyContent="space-between">
             <Heading as="h5" size="md" color="black" ml="2">
-              {getValue(data.deucation, "Beneavin College De La Salle")}
+              {getValue(profileData.deucation, "Beneavin College De La Salle")}
             </Heading>
             <Heading as="h5" size="md" color="black" ml="20">
-              {getValue(data.startDate + " - " + Date.endDate, " 2012 - 2017 ")}
+              {getValue(
+                profileData.startDate + " - " + Date.endDate,
+                " 2012 - 2017 "
+              )}
             </Heading>
           </Flex>
           <Flex flexDir="column" w="100%" flexWrap="wrap" overflow="auto">
@@ -146,7 +175,7 @@ function Professional() {
           </Heading>
           <Flex flexDir="column" w="100%" flexWrap="wrap" overflow="auto">
             <Heading as="h2" size="md" ml="2">
-              {getValue(data.project, "project1")}
+              {getValue(profileData.project, "project1")}
             </Heading>
             <Text mx="20">
               jdhvjdsbvhjdbvihdbv dhbcvuhdbcvu hdjcvjhdvc hjdvcbjhdacv

@@ -41,14 +41,18 @@ function Templates() {
   };
 
   useEffect(() => {
-    if (searchResult.length > 0) {
+    if (search === "") {
+      setSearchResult([]);
+      setTemplates(tempTemplates);
+    } else if (searchResult.length > 0) {
       setTemplates(searchResult);
     } else if (searchResult.length === 0 && search !== "") {
       setTemplates([]);
-    } else {
+    } else if (search === "") {
+      setSearchResult([]);
       setTemplates(tempTemplates);
     }
-  }, [searchResult, tempTemplates, search]);
+  }, [tempTemplates, search]);
 
   return (
     <Flex flexDirection="column" w="100vw">
