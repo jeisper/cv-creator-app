@@ -16,8 +16,8 @@ function Professional({ currentUser }) {
         .get("http://localhost:5000/api/v1/user/" + { uid } + "/data")
         .then(function (response) {
           console.log("throw");
-          setProfileData(response);
-          console.log(response);
+          setProfileData(response.data.data.profile.profileData);
+          console.log("profile data", response.data.data.profile.profileData);
           console.log(profileData);
 
           // handle success
@@ -57,7 +57,10 @@ function Professional({ currentUser }) {
             >
               <ListItem>
                 Name:{" "}
-                {getValue(profileData.fname + profileData.lname, "Neil Gibson")}
+                {getValue(
+                  profileData.name.fname + " " + profileData.name.lname,
+                  "Neil Gibson"
+                )}
               </ListItem>
               <ListItem>
                 Email: {getValue(profileData.email, "1neilgibson1@gmail.com")}
