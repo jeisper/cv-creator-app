@@ -2,7 +2,7 @@ import User from "../models/user.js";
 
 export const getUserData = async (req, res) => {
   try {
-    const filter = { googleId: req.params.id };
+    const filter = { googleID: req.params.id };
     const userData = (await User.find(filter))[0];
 
     console.log("Getting user profile data: ", userData);

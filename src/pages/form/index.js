@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar";
 import ProfileData from "./ProfileData";
 import Summary from "./Summary";
@@ -12,6 +12,8 @@ import Achievements from "./Achievements";
 import Skills from "./Skills";
 import ProfilePicture from "./ProfilePicture";
 import Preview from "./Preview";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import axios from "axios";
 
 function Form() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -87,7 +89,35 @@ function Form() {
       },
     ],
   });
+
   const history = useHistory();
+
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user);
+        axios
+          .get("http://localhost:5000/api/v1/user/" + user.uid + "/data")
+          .then(function (response) {
+            console.log("throw");
+            setFormData(response.data.data.profile.profileData);
+            console.log("profile data", response.data.data.profile.profileData);
+
+            // handle success
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          });
+        console.log("User signed in");
+      } else {
+        console.log("User not signed in");
+      }
+    });
+  }, []);
 
   let currentContent = <Flex>Loading</Flex>;
   const goNext = () => {

@@ -13,7 +13,7 @@ function Professional({ currentUser }) {
   useEffect(() => {
     if (uid) {
       axios
-        .get("http://localhost:5000/api/v1/user/" + { uid } + "/data")
+        .get("http://localhost:5000/api/v1/user/" + uid + "/data")
         .then(function (response) {
           console.log("throw");
           setProfileData(response.data.data.profile.profileData);

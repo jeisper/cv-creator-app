@@ -3,13 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Navbar from "../../components/navbar";
 import Professional from "../../components/templates/Professional";
-import {
-  signInWithPopup,
-  GoogleAuthProvider,
-  getAuth,
-  onAuthStateChanged,
-  signOut,
-} from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function Create() {
   const [currentUser, setCurrentUser] = useState(null);

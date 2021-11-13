@@ -2,48 +2,8 @@ import { Flex, IconButton, Spacer, Button, useToast } from "@chakra-ui/react";
 import { TiArrowLeftOutline, TiArrowRightOutline } from "react-icons/ti";
 import React from "react";
 import FormTextInputNotRequired from "./FormTextInputNotRequired";
-import axios from "axios";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useHistory } from "react-router";
 
-function Links({ formData, updateFormData, goBack }) {
-  const toast = useToast();
-  const history = useHistory();
-
-  const uploadDataToDatabase = () => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in,
-        const uid = user.uid;
-        axios
-          .post(`http://localhost:5000/api/v1/user/${uid}/data`, {
-            googleID: uid + "",
-            userData: user,
-            saved: ["template1", "template2"],
-            profileData: formData,
-          })
-          .then(function (response) {
-            console.log("got response", response);
-            toast({
-              title: "Submitted!",
-              description: "Your profile has been updated",
-              status: "success",
-              duration: 2000,
-              isClosable: true,
-            });
-            history.push("/templates");
-          })
-          .catch(function (error) {
-            console.log("got an error", error);
-            alert("Server Error");
-          });
-      } else {
-        alert("Please Sign in to submit");
-      }
-    });
-  };
-
+function Links({ formData, updateFormData, goBack, goNext }) {
   return (
     <Flex
       justify="center"
@@ -129,16 +89,9 @@ function Links({ formData, updateFormData, goBack }) {
           <TiArrowLeftOutline fontSize="5vh" />
         </IconButton>
         <Spacer />
-        <Button
-          m="2vw"
-          fontSize="3vh"
-          alignContent="left"
-          onClick={() => {
-            uploadDataToDatabase();
-          }}
-        >
-          Submit
-        </Button>
+        <IconButton placeContent="right" m="2vw" onClick={goNext}>
+          <TiArrowRightOutline fontSize="5vh" />
+        </IconButton>
       </Flex>
     </Flex>
   );

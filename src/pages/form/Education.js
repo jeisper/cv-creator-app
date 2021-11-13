@@ -2,7 +2,6 @@ import {
   Button,
   Flex,
   IconButton,
-  Text,
   Spacer,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -23,7 +22,7 @@ function Education({ formData, updateFormData, goBack, goNext }) {
       borderRadius="10px"
     >
       <Flex flexDir="column">
-        {formData.education.map((item, index) => {
+        {formData.education.map((item) => {
           return (
             <Flex
               justify="center"
