@@ -6,6 +6,7 @@ import Professional from "../../components/templates/Professional";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import SignIn from "../../components/Signin";
 import axios from "axios";
+import Robust from "../../components/templates/Robust";
 
 function Create() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -42,6 +43,9 @@ function Create() {
   switch (templateID) {
     case "elegant":
       currentTemplate = <Professional profileData={profileData} />;
+      break;
+    case "robust":
+      currentTemplate = <Robust profileData={profileData} />;
       break;
     default:
       currentTemplate = "404 not found";
