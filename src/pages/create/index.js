@@ -41,7 +41,7 @@ function Create() {
   let currentTemplate = null;
   switch (templateID) {
     case "elegant":
-      currentTemplate = <Professional data={profileData} />;
+      currentTemplate = <Professional profileData={profileData} />;
       break;
     default:
       currentTemplate = "404 not found";

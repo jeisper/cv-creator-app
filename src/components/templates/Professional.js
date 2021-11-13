@@ -5,13 +5,7 @@ import { getValue } from "../../Utils";
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from "@chakra-ui/react";
 
-function Professional({ data }) {
-  const [profileData, setProfileData] = useState(null);
-
-  useEffect(() => {
-    setProfileData(data);
-  }, [data]);
-
+function Professional({ profileData }) {
   return profileData != null ? (
     <Flex flexDir="column" px="70" w="100vw" mt="10">
       <Flex border="1px" h="100%" w="100%" flexDir="column">
