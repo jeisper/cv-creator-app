@@ -4,32 +4,15 @@ import React, { useEffect, useState } from "react";
 import { getValue } from "../../Utils";
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from "@chakra-ui/react";
-import axios from "axios";
 
-function Professional({ currentUser }) {
-  const [profileData, setProfileData] = useState({});
-  const uid = currentUser ? currentUser.uid : null;
+function Professional({ data }) {
+  const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
-    if (uid) {
-      axios
-        .get("http://localhost:5000/api/v1/user/" + uid + "/data")
-        .then(function (response) {
-          console.log("throw");
-          setProfileData(response.data.data.profile.profileData);
-          console.log("profile data", response.data.data.profile.profileData);
-          console.log(profileData);
+    setProfileData(data);
+  }, [data]);
 
-          // handle success
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-  }, [currentUser]);
-
-  return (
+  return profileData != null ? (
     <Flex flexDir="column" px="70" w="100vw" mt="10">
       <Flex border="1px" h="100%" w="100%" flexDir="column">
         <Flex
@@ -58,12 +41,17 @@ function Professional({ currentUser }) {
               <ListItem>
                 Name:{" "}
                 {getValue(
-                  profileData.name.fname + " " + profileData.name.lname,
+                  profileData.name &&
+                    profileData.name.fname + " " + profileData.name.lname,
                   "Neil Gibson"
                 )}
               </ListItem>
               <ListItem>
-                Email: {getValue(profileData.email, "1neilgibson1@gmail.com")}
+                Email:{" "}
+                {getValue(
+                  profileData.contact && profileData.contact.email,
+                  "1neilgibson1@gmail.com"
+                )}
               </ListItem>
               <ListItem>
                 Phone: {getValue(profileData.phone, "0852120302")}
@@ -189,7 +177,7 @@ function Professional({ currentUser }) {
         </Flex>
       </Flex>
     </Flex>
-  );
+  ) : null;
 }
 
 export default Professional;

@@ -70,7 +70,7 @@ function SignIn() {
   };
 
   return (
-    <Flex w="100%">
+    <Flex>
       {currentUser != null ? (
         <Popover>
           <PopoverTrigger>

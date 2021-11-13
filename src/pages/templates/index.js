@@ -72,7 +72,6 @@ function Templates() {
           alignItems="center"
         >
           {templates.map((item, index) => {
-            // console.log(item);
             return <Card template={item} key={index} />;
           })}
         </Flex>
