@@ -3,9 +3,11 @@ import { Flex, Heading, Text } from "@chakra-ui/layout";
 import { getValue } from "../../Utils";
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from "@chakra-ui/react";
+import { useState } from "react";
 
 function Professional({ profileData }) {
   console.log("Profile data is: " + JSON.stringify(profileData));
+  const [school, setSchools] = useState(profileData.education);
   return profileData != null ? (
     <Flex flexDir="column" px="70" w="100vw" mt="10">
       <Flex border="1px" h="100%" w="100%" flexDir="column">
