@@ -1,11 +1,13 @@
 import { Image } from "@chakra-ui/image";
 import { Flex, Heading, Text } from "@chakra-ui/layout";
-import React, { useEffect, useState } from "react";
 import { getValue } from "../../Utils";
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from "@chakra-ui/react";
+import { useState } from "react";
 
 function Professional({ profileData }) {
+  console.log("Profile data is: " + JSON.stringify(profileData));
+  const [school, setSchools] = useState(profileData.education);
   return profileData != null ? (
     <Flex flexDir="column" px="70" w="100vw" mt="10">
       <Flex border="1px" h="100%" w="100%" flexDir="column">
@@ -22,7 +24,7 @@ function Professional({ profileData }) {
             borderRadius="full"
             boxSize="20vw"
             src={getValue(
-              profileData.image,
+              profileData.profileImg,
               "https://miro.medium.com/max/3150/1*1a3GXrNqpIUImV_w084HfQ.jpeg"
             )}
           ></Image>
@@ -48,11 +50,20 @@ function Professional({ profileData }) {
                 )}
               </ListItem>
               <ListItem>
-                Phone: {getValue(profileData.phone, "0852120302")}
+                Phone:{" "}
+                {getValue(
+                  profileData.contact && profileData.contact.phone,
+                  "0852120992"
+                )}
               </ListItem>
               <ListItem>
-                LinkedIn:{" "}
-                {getValue(profileData.linkedin, "neil-gibson linkedIn")}
+                {getValue(
+                  profileData.links &&
+                    profileData.links.map((social) => {
+                      return social.name === "linkedIn" ? social.link : null;
+                    }),
+                  "neil-gibson linkedIn"
+                )}
               </ListItem>
             </UnorderedList>
           </Flex>
@@ -79,11 +90,20 @@ function Professional({ profileData }) {
 
           <Flex w="100%" justifyContent="space-between">
             <Heading as="h5" size="md" color="black" ml="2">
-              {getValue(profileData.deucation, "Beneavin College De La Salle")}
+              {getValue(
+                profileData.education &&
+                  profileData.education.map((school) => {
+                    return school.institutionName;
+                  }),
+                "Beneavin College De La Salle"
+              )}
             </Heading>
             <Heading as="h5" size="md" color="black" ml="20">
               {getValue(
-                profileData.startDate + " - " + Date.endDate,
+                profileData.education &&
+                  profileData.education.map((school) => {
+                    return school.startDate + " - " + school.endDate;
+                  }),
                 " 2012 - 2017 "
               )}
             </Heading>

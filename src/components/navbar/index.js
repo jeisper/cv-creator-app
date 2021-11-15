@@ -11,7 +11,7 @@ function Navbar({ showSearch, search, setSearch, handleChange }) {
   const history = useHistory();
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   return (
-    <Flex w="100%" h="15vh" flexWrap="wrap">
+    <Flex w="100%" h="15vh" flexWrap="wrap" align="center" justify="center">
       <Image
         src={logo}
         alt="logo"
@@ -31,19 +31,8 @@ function Navbar({ showSearch, search, setSearch, handleChange }) {
           />
         </Box>
       ) : (
-        <Flex
-          h="100%"
-          w="33vw"
-          mt="2"
-          align="center"
-          p="10"
-          borderLeft="1px blue.500"
-          borderRight="1px blue.500"
-        >
-          <Heading
-            fontFamily="Noto serif"
-            fontSize={isOnmobile ? "large" : "3xl"}
-          >
+        <Flex h="100%" w="33vw" mt="2" align="center" p="10">
+          <Heading fontSize={isOnmobile ? "large" : "3xl"}>
             Create the perfect CV
           </Heading>
         </Flex>

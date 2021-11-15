@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/layout";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import Navbar from "../../components/navbar";
 import Professional from "../../components/templates/Professional";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -11,6 +11,8 @@ import Robust from "../../components/templates/Robust";
 function Create() {
   const [currentUser, setCurrentUser] = useState(null);
   const [profileData, setProfileData] = useState({});
+
+  const history = useHistory();
 
   useEffect(() => {
     const auth = getAuth();
@@ -25,6 +27,11 @@ function Create() {
             setProfileData(response.data.data.profile.profileData);
             console.log("profile data", response.data.data.profile.profileData);
             console.log(profileData);
+
+            alert(profileData.name.fname);
+            if (profileData.name.fname === "") {
+              history.push("/form");
+            }
 
             // handle success
           })
