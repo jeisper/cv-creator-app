@@ -28,16 +28,11 @@ function Create() {
             console.log("profile data", response.data.data.profile.profileData);
             console.log(profileData);
 
-            alert(profileData.name.fname);
-            if (profileData.name.fname === "") {
-              history.push("/form");
-            }
-
             // handle success
           })
           .catch(function (error) {
             // handle error
-            console.log(error);
+            history.push("/form");
           });
       } else {
         console.log("User not signed in");

@@ -16,20 +16,7 @@ import Footer from "../../components/Footer";
 function Landing() {
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   const history = useHistory();
-  const [currentUser, setCurrentUser] = useState(null);
 
-  useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setCurrentUser(user);
-        console.log(user);
-        console.log("User signed in");
-      } else {
-        console.log("User not signed in");
-      }
-    });
-  }, []);
   return (
     <Flex w="100%" flexDir="column">
       <Navbar showSearch={false} />
@@ -53,9 +40,7 @@ function Landing() {
             color="white"
             m="5"
             onClick={() => {
-              currentUser
-                ? history.push("/form")
-                : alert("please sign in before you can get started");
+              history.push("/templates");
             }}
           >
             Get Started
