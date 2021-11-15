@@ -116,16 +116,7 @@ function ProfileData({
           Cancel
         </Button>
         <Spacer />
-        <Button
-          m="2vw"
-          fontSize="3vh"
-          alignContent="left"
-          onClick={() => {
-            uploadDataToDatabase();
-          }}
-        >
-          Save
-        </Button>
+
         <IconButton
           m="2vw"
           onClick={() => {
