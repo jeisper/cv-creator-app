@@ -40,15 +40,15 @@ function Form() {
     summary: "",
     education: [
       {
-        startDate: "19",
-        endDate: "23",
-        currentYear: "3",
-        institutionName: "TUD",
-        course: "CS",
-        score: "3",
+        startDate: "",
+        endDate: "",
+        currentYear: "",
+        institutionName: "",
+        course: "",
+        score: "",
         details: {
-          modules: "Math",
-          extra: "No",
+          modules: "",
+          extra: "",
         },
       },
     ],
