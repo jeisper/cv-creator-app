@@ -46,31 +46,33 @@ const linksSchema = mongoose.Schema({
   link: String,
 });
 
+export const profileData = mongoose.Schema({
+  profileImg: String,
+  name: {
+    fname: String,
+    lname: String,
+  },
+  contact: {
+    phone: String,
+    email: String,
+  },
+  links: [linksSchema],
+  location: {
+    city: String,
+    country: String,
+  },
+  summary: String,
+  education: [educationSchema],
+  skills: [skillsSchema],
+  work: [workSchema],
+  experience: [experienceSchema],
+  achievements: [achievementsSchema],
+});
+
 const userSchema = mongoose.Schema({
   googleID: String,
   saved: [String],
-  profileData: {
-    profileImg: String,
-    name: {
-      fname: String,
-      lname: String,
-    },
-    contact: {
-      phone: String,
-      email: String,
-    },
-    links: [linksSchema],
-    location: {
-      city: String,
-      country: String,
-    },
-    summary: String,
-    education: [educationSchema],
-    skills: [skillsSchema],
-    work: [workSchema],
-    experience: [experienceSchema],
-    achievements: [achievementsSchema],
-  },
+  profileData: profileData,
 });
 
 const templateModel = mongoose.model("User", userSchema, "users");

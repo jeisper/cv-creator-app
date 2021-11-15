@@ -9,6 +9,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import templatesRouter from "./routes/templates.js";
 import userRouter from "./routes/users.js";
+import publishRouter from "./routes/publish.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 // ROUTES
 app.use("/api/v1/templates", templatesRouter);
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/publish", publishRouter);
 
 app.get("/", (req, res) => {
   res.send({

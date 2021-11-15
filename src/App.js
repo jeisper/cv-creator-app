@@ -5,6 +5,7 @@ import { Flex } from "@chakra-ui/react";
 import Landing from "./pages/landing";
 import Profile from "./pages/profile";
 import Create from "./pages/create";
+import CV from "./pages/cv";
 import Form from "./pages/form";
 import useScript from "./hooks/useScript";
 
@@ -15,6 +16,7 @@ function App() {
     <Router>
       <Flex>
         <Switch>
+          <Route path="/cv/:publishID" component={CV} />
           <Route path="/create/:templateID" component={Create} />
           <Route path="/form" component={Form} />
           <Route path="/templates" component={Templates} />
