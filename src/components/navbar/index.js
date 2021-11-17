@@ -7,7 +7,7 @@ import { useHistory } from "react-router";
 import { useMediaQuery } from "@chakra-ui/media-query";
 import SignIn from "../Signin";
 
-function Navbar({ showSearch, search, setSearch, handleChange }) {
+function Navbar({ showSearch, Search, setSearch, handleChange }) {
   const history = useHistory();
   const [isOnmobile] = useMediaQuery("(max-width: 768px)");
   return (
@@ -25,7 +25,7 @@ function Navbar({ showSearch, search, setSearch, handleChange }) {
       {showSearch ? (
         <Box h="max-content" w="30vw">
           <Search
-            search={search}
+            search={Search}
             setSearch={setSearch}
             handleChange={handleChange}
           />
