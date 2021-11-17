@@ -1,7 +1,7 @@
 import { Input, Flex, Select } from "@chakra-ui/react";
 import { React } from "react";
 
-function Search({ search, handleChange, selection }) {
+function Search({ search, handleChange, selection, handleCategory }) {
   return (
     <Flex flexDir="row" flexWrap="wrap">
       <Input
@@ -10,7 +10,12 @@ function Search({ search, handleChange, selection }) {
         onChange={handleChange}
         value={search}
       ></Input>
-      <Select placeholder="Select category" my="1" size="sm">
+      <Select
+        placeholder="Select category"
+        my="1"
+        size="sm"
+        onChange={handleCategory}
+      >
         <option value="Creative">Creative</option>
         <option value="Professional">Professional</option>
       </Select>

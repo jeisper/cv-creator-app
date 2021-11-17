@@ -10,6 +10,8 @@ function Templates() {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
+  let category = null;
+
   //useEffects
   useEffect(() => {
     axios
@@ -28,29 +30,46 @@ function Templates() {
   }, []);
 
   //Functions
+  const handleCategory = (event) => {
+    console.log("this is event: ", event.target.value);
+    if (event.target.value === "Creative") {
+      category = "Creative";
+    } else if (event.target.value === "Professional") {
+      category = "Professional";
+    } else {
+      category = null;
+    }
+  };
+
   const handleChange = (event) => {
     setSearch(event.target.value);
     let results = [];
 
     for (const template of templates) {
-      if (template.name.includes(search)) {
-        results.push(template);
+      if (template.category === category) {
+        if (template.name.toLowerCase().includes(search)) {
+          results.push(template);
+        }
+      }
+      if (category === null) {
+        if (template.name.toLowerCase().includes(search)) {
+          results.push(template);
+        }
       }
     }
+
     setSearchResult(results);
+    console.log(searchResult);
   };
 
   useEffect(() => {
     if (search === "") {
-      setSearchResult([]);
+      setSearchResult("");
       setTemplates(tempTemplates);
     } else if (searchResult.length > 0) {
       setTemplates(searchResult);
     } else if (searchResult.length === 0 && search !== "") {
       setTemplates([]);
-    } else if (search === "") {
-      setSearchResult([]);
-      setTemplates(tempTemplates);
     }
   }, [tempTemplates, search]);
 
@@ -59,6 +78,7 @@ function Templates() {
       <Navbar
         showSearch
         handleChange={handleChange}
+        handleCategory={handleCategory}
         search={search}
         setSearch={setSearch}
       />
