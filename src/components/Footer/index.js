@@ -1,4 +1,5 @@
 import { Flex, Heading } from "@chakra-ui/layout";
+import { AiOutlineLinkedin, AiOutlineGithub } from "react-icons/ai";
 import React from "react";
 
 function Footer() {
@@ -12,17 +13,28 @@ function Footer() {
       align="center"
       flexWrap="wrap"
     >
-      <Flex flexDir="column" w="50%" align="center" justify="center">
-        <Heading mx="5">Neil Gibson</Heading>
-        <Heading mx="5">Harsh Chandra</Heading>
-        <Heading mx="5">Givago Guimaraes</Heading>
-        <Heading mx="5">Immanuel Adeoye</Heading>
-      </Flex>
-      <Flex flexDir="column" w="50%" align="center" justify="center">
-        <Heading mx="5">LinkedIn</Heading>
-        <Heading mx="5">LinkedIn</Heading>
-        <Heading mx="5">LinkedIn</Heading>
-        <Heading mx="5">LinkedIn</Heading>
+      <Flex flexDir="row" w="100%" align="center" justify="center">
+        <Flex my="2" mx="10" flexDir="row">
+          <Heading fontSize="20">Neil Gibson</Heading>
+
+          <AiOutlineLinkedin size="30" />
+          <AiOutlineGithub size="30" />
+        </Flex>
+        <Flex my="2" mx="10">
+          <Heading fontSize="20">Harsh Chandra</Heading>
+          <AiOutlineLinkedin size="30" mx="2" />
+          <AiOutlineGithub size="30" mx="2" />
+        </Flex>
+        <Flex my="2" mx="10">
+          <Heading fontSize="20">Givago Guimaraes</Heading>
+          <AiOutlineLinkedin size="30" mx="2" />
+          <AiOutlineGithub size="30" mx="2" />
+        </Flex>
+        <Flex my="2" mx="10">
+          <Heading fontSize="20">Immanuel Adeoye</Heading>
+          <AiOutlineLinkedin size="30" mx="2" />
+          <AiOutlineGithub size="30" mx="2" />
+        </Flex>
       </Flex>
     </Flex>
   );
