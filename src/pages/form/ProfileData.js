@@ -6,7 +6,6 @@ import FormTextInput from "./FormTextInput";
 function ProfileData({
   formData,
   updateFormData,
-  uploadDataToDatabase,
   goBack,
   goNext,
 }) {
