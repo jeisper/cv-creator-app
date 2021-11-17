@@ -26,7 +26,6 @@ function Create() {
           .get("http://localhost:5000/api/v1/user/" + user.uid + "/data")
           .then(function (response) {
             setProfileData(response.data.data.profile.profileData);
-            console.log("profile data", response.data.data.profile.profileData);
             console.log(profileData);
 
             // handle success
