@@ -13,6 +13,7 @@ import {
 import React, { useState } from "react";
 import FormTextInput from "./FormTextInput";
 import FormTextInputNotRequired from "./FormTextInputNotRequired";
+import { isValidDate } from "./Validator";
 
 function EducationModel({ formData, updateFormData, isOpen, onClose }) {
   const [currentEdu, setCurrentEdu] = useState({
@@ -29,6 +30,12 @@ function EducationModel({ formData, updateFormData, isOpen, onClose }) {
   });
 
   const checkValidInput = () => {
+    if (
+      !isValidDate(currentEdu.startDate, "start date") ||
+      !isValidDate(currentEdu.endDate, "end date")
+    ) {
+      return false;
+    }
     if (
       currentEdu.institutionName === "" ||
       currentEdu.startDate === "" ||

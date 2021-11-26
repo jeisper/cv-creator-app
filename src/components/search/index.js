@@ -1,7 +1,7 @@
 import { Input, Flex, Select } from "@chakra-ui/react";
 import { React } from "react";
 
-function Search({ search, handleChange, selection, handleCategory }) {
+function Search({ search, handleChange, handleCategory }) {
   return (
     <Flex flexDir="row" flexWrap="wrap">
       <Input

@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import FormTextInput from "./FormTextInput";
+import { isValidDate } from "./Validator";
 
 function AchievementsModel({ formData, updateFormData, isOpen, onClose }) {
   const [currentAch, setCurrentAch] = useState({
@@ -22,6 +23,9 @@ function AchievementsModel({ formData, updateFormData, isOpen, onClose }) {
   });
 
   const checkValidInput = () => {
+    if (!isValidDate(currentAch.date, "date")) {
+      return false;
+    }
     if (
       currentAch.type === "" ||
       currentAch.org === "" ||

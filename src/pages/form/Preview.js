@@ -13,7 +13,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import TextDesign from "./TextDesign";
-function Preview({ formData, goBack }) {
+function Preview({ formData, data, goBack }) {
   const toast = useToast();
   const history = useHistory();
   const uploadDataToDatabase = () => {
@@ -26,7 +26,7 @@ function Preview({ formData, goBack }) {
           .post(`http://localhost:5000/api/v1/user/${uid}/data`, {
             googleID: uid + "",
             userData: user,
-            saved: ["template1", "template2"],
+            saved: data != null ? [...data.saved] : [],
             profileData: formData,
           })
           .then(function (response) {
