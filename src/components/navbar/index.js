@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Flex, Heading, Spacer } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/react";
-import Search from "../search";
+import Search from "../Search";
 import logo from "../../Assets/Images/cv.png";
 import { useHistory } from "react-router";
 import { useMediaQuery } from "@chakra-ui/media-query";
@@ -31,7 +31,7 @@ function Navbar({
       {showSearch ? (
         <Box h="max-content" w="30vw">
           <Search
-            search={search}
+            search={Search}
             setSearch={setSearch}
             handleChange={handleChange}
             handleCategory={handleCategory}

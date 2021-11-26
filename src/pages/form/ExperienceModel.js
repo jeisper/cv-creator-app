@@ -13,6 +13,7 @@ import {
 import React, { useState } from "react";
 import FormTextInput from "./FormTextInput";
 import FormTextInputNotRequired from "./FormTextInputNotRequired";
+import { isValidDate } from "./Validator";
 
 function ExperienceModel({ formData, updateFormData, isOpen, onClose }) {
   const [currentExp, setCurrentExp] = useState({
@@ -25,11 +26,17 @@ function ExperienceModel({ formData, updateFormData, isOpen, onClose }) {
   });
   const checkValidInput = () => {
     if (
+      !isValidDate(currentExp.startDate, "start date") ||
+      !isValidDate(currentExp.endDate, "end date")
+    ) {
+      return false;
+    }
+    if (
       currentExp.title === "" ||
       currentExp.startDate === "" ||
       currentExp.endDate === "" ||
       currentExp.type === "" ||
-      currentExp.org
+      currentExp.org === ""
     ) {
       alert("Please Insert all Data Where Required");
       return false;

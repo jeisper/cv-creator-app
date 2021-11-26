@@ -26,10 +26,10 @@ const defaultData = {
     email: "",
   },
   links: [
-    {
-      name: "",
-      link: "",
-    },
+    // {
+    //   name: "",
+    //   link: "",
+    // },
   ],
   location: {
     city: "",
@@ -37,51 +37,51 @@ const defaultData = {
   },
   summary: "",
   education: [
-    {
-      startDate: "",
-      endDate: "",
-      currentYear: "",
-      institutionName: "",
-      course: "",
-      score: "",
-      details: {
-        modules: "",
-        extra: "",
-      },
-    },
+    // {
+    //   startDate: "",
+    //   endDate: "",
+    //   currentYear: "",
+    //   institutionName: "",
+    //   course: "",
+    //   score: "",
+    //   details: {
+    //     modules: "",
+    //     extra: "",
+    //   },
+    // },
   ],
   skills: [
-    {
-      title: "",
-      list: ["", "", ""],
-    },
+    // {
+    //   title: "",
+    //   list: [],
+    // },
   ],
   work: [
-    {
-      startDate: "",
-      endDate: "",
-      jobTitle: "",
-      company: "",
-      description: "",
-    },
+    // {
+    //   startDate: "",
+    //   endDate: "",
+    //   jobTitle: "",
+    //   company: "",
+    //   description: "",
+    // },
   ],
   experience: [
-    {
-      startDate: "",
-      endDate: "",
-      title: "",
-      org: "",
-      type: "",
-      description: "",
-    },
+    // {
+    //   startDate: "",
+    //   endDate: "",
+    //   title: "",
+    //   org: "",
+    //   type: "",
+    //   description: "",
+    // },
   ],
   achievements: [
-    {
-      type: "",
-      org: "",
-      date: "",
-      desc: "",
-    },
+    // {
+    //   type: "",
+    //   org: "",
+    //   date: "",
+    //   desc: "",
+    // },
   ],
 };
 

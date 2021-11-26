@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import FormTextInput from "./FormTextInput";
+import { isValidDate } from "./Validator";
 
 function WorkModel({ formData, updateFormData, isOpen, onClose }) {
   const [currentWork, setCurrentWork] = useState({
@@ -23,6 +24,12 @@ function WorkModel({ formData, updateFormData, isOpen, onClose }) {
   });
 
   const checkValidInput = () => {
+    if (
+      !isValidDate(currentWork.startDate, "start date") ||
+      !isValidDate(currentWork.endDate, "end date")
+    ) {
+      return false;
+    }
     if (
       currentWork.company === "" ||
       currentWork.startDate === "" ||

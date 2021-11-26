@@ -17,6 +17,7 @@ function Education({
   goNext,
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Flex
       justify="center"
