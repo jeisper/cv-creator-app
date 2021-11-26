@@ -10,26 +10,19 @@ import {
   ModalCloseButton,
   Button,
   Image,
-  PopoverTrigger,
-  Popover,
-  PopoverCloseButton,
-  PopoverContent,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { IoPerson } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
-import {
-  signInWithPopup,
-  GoogleAuthProvider,
-  getAuth,
-  onAuthStateChanged,
-  signOut,
-} from "firebase/auth";
+import { signInWithPopup, getAuth, onAuthStateChanged } from "firebase/auth";
 import { auth, provider } from "../../firebase";
+import { useHistory } from "react-router";
 
 function SignIn() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentUser, setCurrentUser] = useState(null);
+
+  const history = useHistory();
 
   useEffect(() => {
     const auth = getAuth();
@@ -40,6 +33,7 @@ function SignIn() {
         console.log("User signed in");
       } else {
         console.log("User not signed in");
+        setCurrentUser(null);
       }
     });
   }, []);
@@ -47,64 +41,29 @@ function SignIn() {
   const signUserIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
         const user = result.user;
         setCurrentUser(user);
 
         onClose();
-        // ...
       })
       .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
+        console.log(error);
       });
   };
 
   return (
     <Flex>
       {currentUser != null ? (
-        <Popover>
-          <PopoverTrigger>
-            <Flex h="100%" justify="center" align="center">
-              <Image
-                w="50"
-                h="50"
-                borderRadius="full"
-                src={currentUser.photoURL}
-              />
-            </Flex>
-          </PopoverTrigger>
-          <PopoverContent w="100px" mr="4">
-            <PopoverCloseButton />
-            <Button
-              leftIcon={<IoPerson />}
-              color="blue.500"
-              p="1"
-              size="sm"
-              onClick={() => {
-                const auth = getAuth();
-                signOut(auth)
-                  .then(() => {
-                    setCurrentUser(null);
-                  })
-                  .catch((error) => {
-                    // An error happened.
-                  });
-              }}
-            >
-              Sign Out
-            </Button>
-          </PopoverContent>
-        </Popover>
+        <Flex
+          h="100%"
+          justify="center"
+          align="center"
+          onClick={() => {
+            history.push("/profile");
+          }}
+        >
+          <Image w="50" h="50" borderRadius="full" src={currentUser.photoURL} />
+        </Flex>
       ) : (
         <Button leftIcon={<IoPerson />} color="blue.500" p="5" onClick={onOpen}>
           Sign In

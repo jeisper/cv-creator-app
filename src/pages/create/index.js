@@ -12,6 +12,7 @@ import { Button } from "@chakra-ui/button";
 function Create() {
   const [currentUser, setCurrentUser] = useState(null);
   const [profileData, setProfileData] = useState({});
+  const [data, setData] = useState(null);
 
   const history = useHistory();
 
@@ -26,8 +27,8 @@ function Create() {
           .get("http://localhost:5000/api/v1/user/" + user.uid + "/data")
           .then(function (response) {
             setProfileData(response.data.data.profile.profileData);
-            console.log(profileData);
-
+            setData(response.data.data.profile);
+            console.log("HERE", response.data.data.profile);
             // handle success
           })
           .catch(function (error) {
@@ -63,12 +64,34 @@ function Create() {
       })
       .then(function (response) {
         console.log("got response", response);
-        history.push("/cv/" + randomPublishID);
+        updateProfile(randomPublishID);
       })
       .catch(function (error) {
         console.log("got an error", error);
         alert("Server Error");
       });
+  };
+
+  const updateProfile = (randomPublishID) => {
+    const dataCopy = { ...data };
+    const savedCopy = [...dataCopy.saved];
+    savedCopy.push(randomPublishID + "");
+    dataCopy.saved = savedCopy;
+
+    if (data) {
+      axios
+        .post(
+          `http://localhost:5000/api/v1/user/${data.googleID}/data`,
+          dataCopy
+        )
+        .then(function (response) {
+          history.push("/cv/" + randomPublishID);
+        })
+        .catch(function (error) {
+          console.log("got an error", error);
+          alert("Server Error");
+        });
+    }
   };
 
   return (

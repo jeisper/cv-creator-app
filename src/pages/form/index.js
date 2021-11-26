@@ -15,126 +15,100 @@ import Preview from "./Preview";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
 
+const defaultData = {
+  profileImg: "",
+  name: {
+    fname: "",
+    lname: "",
+  },
+  contact: {
+    phone: "",
+    email: "",
+  },
+  links: [
+    {
+      name: "",
+      link: "",
+    },
+  ],
+  location: {
+    city: "",
+    country: "",
+  },
+  summary: "",
+  education: [
+    {
+      startDate: "",
+      endDate: "",
+      currentYear: "",
+      institutionName: "",
+      course: "",
+      score: "",
+      details: {
+        modules: "",
+        extra: "",
+      },
+    },
+  ],
+  skills: [
+    {
+      title: "",
+      list: ["", "", ""],
+    },
+  ],
+  work: [
+    {
+      startDate: "",
+      endDate: "",
+      jobTitle: "",
+      company: "",
+      description: "",
+    },
+  ],
+  experience: [
+    {
+      startDate: "",
+      endDate: "",
+      title: "",
+      org: "",
+      type: "",
+      description: "",
+    },
+  ],
+  achievements: [
+    {
+      type: "",
+      org: "",
+      date: "",
+      desc: "",
+    },
+  ],
+};
+
 function Form() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({
-    profileImg: "",
-    name: {
-      fname: "",
-      lname: "",
-    },
-    contact: {
-      phone: "",
-      email: "",
-    },
-    links: [
-      {
-        name: "",
-        link: "",
-      },
-    ],
-    location: {
-      city: "",
-      country: "",
-    },
-    summary: "",
-    education: [
-      {
-        startDate: "",
-        endDate: "",
-        currentYear: "",
-        institutionName: "",
-        course: "",
-        score: "",
-        details: {
-          modules: "",
-          extra: "",
-        },
-      },
-    ],
-    skills: [
-      {
-        title: "",
-        list: ["", "", ""],
-      },
-    ],
-    work: [
-      {
-        startDate: "",
-        endDate: "",
-        jobTitle: "",
-        company: "",
-        description: "",
-      },
-    ],
-    experience: [
-      {
-        startDate: "",
-        endDate: "",
-        title: "",
-        org: "",
-        type: "",
-        description: "",
-      },
-    ],
-    achievements: [
-      {
-        type: "",
-        org: "",
-        date: "",
-        desc: "",
-      },
-    ],
-  });
+  const [data, setData] = useState(null);
+  const [formData, setFormData] = useState(defaultData);
 
-  const toast = useToast();
   const history = useHistory();
-  const uploadDataToDatabase = () => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in,
-        const uid = user.uid;
-        axios
-          .post(`http://localhost:5000/api/v1/user/${uid}/data`, {
-            googleID: uid + "",
-            userData: user,
-            saved: ["template1", "template2"],
-            profileData: formData,
-          })
-          .then(function (response) {
-            console.log("got response", response);
-            toast({
-              title: "Submitted!",
-              description: "Your profile has been updated",
-              status: "success",
-              duration: 2000,
-              isClosable: true,
-            });
-            history.push("/templates");
-          })
-          .catch(function (error) {
-            console.log("got an error", error);
-            alert("Server Error");
-          });
-      } else {
-        alert("Please Sign in to submit");
-      }
-    });
-  };
-
-  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setCurrentUser(user);
         axios
           .get("http://localhost:5000/api/v1/user/" + user.uid + "/data")
           .then(function (response) {
             console.log("throw");
             setFormData(response.data.data.profile.profileData);
+            setData(response.data.data.profile);
+
+            if (
+              !response.data.data.profile.profileData.name ||
+              !response.data.data.profile.profileData.name.fname
+            ) {
+              setFormData(defaultData);
+            }
             console.log("profile data", response.data.data.profile.profileData);
 
             // handle success
@@ -260,6 +234,7 @@ function Form() {
         <Preview
           formData={formData}
           updateFormData={setFormData}
+          data={data}
           goNext={goNext}
           goBack={goBack}
         />

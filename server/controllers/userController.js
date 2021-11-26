@@ -63,3 +63,38 @@ export const updateUserData = async (req, res) => {
     });
   }
 };
+
+export const deleteUserData = async (req, res) => {
+  try {
+    const data = req.body;
+    const query = { googleID: req.params.id };
+
+    console.log("Getting user profile data with id: ", req.params.id);
+    console.log("with profile data: ", data);
+
+    data.saved = [];
+    data.profileData = {};
+
+    User.findOneAndUpdate(query, data, { upsert: true }, function (err, doc) {
+      if (err) {
+        console.log("database err ", err);
+        return res.status(400).json({
+          status: "unsuccessful",
+          message: err,
+        });
+      }
+
+      res.status(200).json({
+        status: "success",
+        data: {
+          profile: data,
+        },
+      });
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "request failed",
+      message: "Database error " + err,
+    });
+  }
+};
