@@ -46,32 +46,23 @@ function Templates() {
     let results = [];
 
     for (const template of templates) {
-      if (template.category === category) {
-        if (template.name.toLowerCase().includes(search)) {
-          results.push(template);
-        }
-      }
-      if (category === null) {
-        if (template.name.toLowerCase().includes(search)) {
-          results.push(template);
-        }
+      if (template.name.toLowerCase().includes(search)) {
+        results.push(template);
       }
     }
-
     setSearchResult(results);
     console.log(searchResult);
   };
 
   useEffect(() => {
     if (search === "") {
-      setSearchResult("");
       setTemplates(tempTemplates);
     } else if (searchResult.length > 0) {
       setTemplates(searchResult);
     } else if (searchResult.length === 0 && search !== "") {
       setTemplates([]);
     }
-  }, [tempTemplates, search]);
+  }, [tempTemplates, search, category]);
 
   return (
     <Flex flexDirection="column" w="100vw">

@@ -31,7 +31,7 @@ function Navbar({
       {showSearch ? (
         <Box h="max-content" w="30vw">
           <Search
-            search={Search}
+            search={search}
             setSearch={setSearch}
             handleChange={handleChange}
             handleCategory={handleCategory}
