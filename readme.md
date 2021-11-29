@@ -1,10 +1,10 @@
 ## Setup instructions
 
 1. First you will need npm/node.
-2. Clone the project and cd into the directory.
+2. Clone the project and cd into the directory ```cd cv-creator-app```
 3. Type ```npm i``` command to install all necessary packages.
 4. Next you need to start the development server for the react project by running ```npm run start``` This will open the project on your localhost port
-5. Finally to start the backend server, in a new terminal window cd into the server directory in the project root folder and type ```node server.js```
+5. Finally to start the backend server, in a new terminal window cd into the server directory in the project root folder ```cd server```  and then type ```node server.js``` The server should start running on port 5000 and the the database should connect if you have the .env file with authentication details
 
 You can now browse the site freely.
 
