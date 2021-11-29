@@ -76,7 +76,7 @@ function ExperienceModel({ formData, updateFormData, isOpen, onClose }) {
             <Flex justify="center" direction="row">
               <FormTextInput
                 label="Start Date"
-                placeholder="Start Date"
+                placeholder="MM/YYYY"
                 value={currentExp ? currentExp.startDate : ""}
                 onChange={(text) => {
                   const copy = { ...currentExp };
@@ -86,7 +86,7 @@ function ExperienceModel({ formData, updateFormData, isOpen, onClose }) {
               />
               <FormTextInput
                 label="End Date"
-                placeholder="End Date"
+                placeholder="MM/YYYY"
                 value={currentExp ? currentExp.endDate : ""}
                 onChange={(text) => {
                   const copy = { ...currentExp };

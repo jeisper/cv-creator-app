@@ -16,7 +16,6 @@ function Footer() {
       <Flex flexDir="row" w="100%" align="center" justify="center">
         <Flex my="2" mx="10" flexDir="row">
           <Heading fontSize="20">Neil Gibson</Heading>
-
           <AiOutlineLinkedin size="30" />
           <AiOutlineGithub size="30" />
         </Flex>

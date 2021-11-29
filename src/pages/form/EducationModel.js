@@ -70,7 +70,7 @@ function EducationModel({ formData, updateFormData, isOpen, onClose }) {
             <Flex justify="center" direction="row">
               <FormTextInput
                 label="Start Date"
-                placeholder="Start Date"
+                placeholder="MM/YYYY"
                 value={currentEdu ? currentEdu.startDate : ""}
                 onChange={(text) => {
                   const copy = { ...currentEdu };
@@ -80,7 +80,7 @@ function EducationModel({ formData, updateFormData, isOpen, onClose }) {
               />
               <FormTextInput
                 label="End Date"
-                placeholder="End Date"
+                placeholder="MM/YYYY"
                 value={currentEdu ? currentEdu.endDate : ""}
                 onChange={(text) => {
                   const copy = { ...currentEdu };

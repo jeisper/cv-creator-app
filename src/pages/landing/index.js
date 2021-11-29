@@ -94,7 +94,7 @@ function Landing() {
           </Heading>
         </Flex>
       </Flex>
-      <Footer/>
+      <Footer />
     </Flex>
   );
 }

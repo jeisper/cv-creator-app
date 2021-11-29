@@ -35,7 +35,7 @@ function WorkModel({ formData, updateFormData, isOpen, onClose }) {
       currentWork.startDate === "" ||
       currentWork.endDate === "" ||
       currentWork.jobTitle === "" ||
-      currentWork.description
+      currentWork.description === ""
     ) {
       alert("Please Insert all Data Where Required");
       return false;
@@ -75,7 +75,7 @@ function WorkModel({ formData, updateFormData, isOpen, onClose }) {
             <Flex justify="center" direction="row">
               <FormTextInput
                 label="Start Date"
-                placeholder="Start Date"
+                placeholder="MM/YYYY"
                 value={currentWork ? currentWork.startDate : ""}
                 onChange={(text) => {
                   const copy = { ...currentWork };
@@ -85,7 +85,7 @@ function WorkModel({ formData, updateFormData, isOpen, onClose }) {
               />
               <FormTextInput
                 label="End Date"
-                placeholder="End Date"
+                placeholder="MM/YYYY"
                 value={currentWork ? currentWork.endDate : ""}
                 onChange={(text) => {
                   const copy = { ...currentWork };

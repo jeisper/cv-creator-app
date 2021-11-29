@@ -70,7 +70,7 @@ function AchievementsModel({ formData, updateFormData, isOpen, onClose }) {
             <Flex justify="center" direction="row">
               <FormTextInput
                 label="Date"
-                placeholder="Date"
+                placeholder="MM/YYYY"
                 value={currentAch ? currentAch.date : ""}
                 onChange={(text) => {
                   const copy = { ...currentAch };
